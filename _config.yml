@@ -7,8 +7,8 @@ title: baichao.hi!
 subtitle: welcome to my webpage!
 description: This is baichao's little house
 author: baichao
-language: zh/en
-timezone: China/Beijing
+language: zh-Hans
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
