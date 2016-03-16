@@ -1,38 +1,98 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Baichao.hi! by baichao1015</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Baichao.hi!</h1>
-      <h2 class="project-tagline">HELLO WORLD</h2>
-    </section>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>配配有礼</title>
+    <link href="http://c.58cdn.com.cn/crop/zt/bangbang/m/20151228/css/peipei_yy_app.css?v=9" type="text/css" rel="stylesheet"/>
+    <style>
+        .hdgz-cont{
+            padding-left: 1rem;
+        }
+        .hdgz-cont span{
+            display: inline-block;
+            margin-left: -1.2rem;
+        }
+    </style>
+    <script>
+        //埋点
+        var _trackURL = "{'cate':'','area':'','pagetype':'special','page':'peipei-shf'}"; 
+    </script>
+</head>
+<body class="red">
+    <div class="wrapper" style="display: none;">
+        <div class="pp-yy-xzy-header">
+            <img src="http://c.58cdn.com.cn/crop/zt/bangbang/m/20151228/images/pp_yy_xzy_header.jpg" alt="邀请好友的话费" />
+            <div class="xzy-header-tip">
+                <p>验证手机，<em>30元</em>话费将充值至此手机号！</p>
+            </div>
+        </div>
+        <div class="sjyz-cont">
+            <div class="sjyz-vcode">
+                <div class="sjyz-phone">
+                    <input type="tel" placeholder="请输入手机号码" id="phone" name="phone" value="" maxlength="11" regex="^[\s\S]+$#^(13|14|15|17|18)\\d{9}$" message="请填写正确的手机号#手机号码错误，请重新输入" />
+                    <a href="javascript:;" id="btnGetCode" onclick="clickLog(from='fxhdan_huoquyanzhengma')">获取验证码</a>
+                    <div class="error-tip eTip-phone">
+                        <span class="error-tip-info"></span>
+                    </div>
+                </div>
 
-    <section class="main-content">
-      <h3>
-<a id="welcome-to-my-pages" class="anchor" href="#welcome-to-my-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to my Pages.</h3>
+                <div class="sjyz-code">
+                    <input type="text" placeholder="请输入验证码" id="vcode" class="" value="" maxlength="6" regex="^[\s\S]+$" message="验证码错误，请重新输入" />
+                    <a href="javascript:void(0);" id="btnCheckCode" onclick="clickLog(from='fxhdan_queren')">确认</a>
+                    <div class="error-tip eTip-vcode">
+                        <span class="error-tip-info"></span>
+                    </div>
+                </div>
 
-<p>你好.</p>
+            </div>
+        </div>
+        <div class="pp-yy-hdgz">
+            <img src="http://c.58cdn.com.cn/crop/zt/bangbang/m/20151228/images/pp_yy_guize_title1.png" alt="活动规则" />
+            <ul class="hdgz_cont1">
+                <li>
+                    <p class="hdgz-cont"><span>1、</span>活动2016年1月29日开始，先到先得送完即止；</p>
+                </li>
+                <li>
+                    <p class="hdgz-cont"><span>2、</span>每成功邀请一个好友将获得5元话费，累计30元即可提现；</p>
+                </li>
+                <li>
+                    <p class="hdgz-cont"><span>3、</span>成功邀请好友定义：<br/>
+                    &nbsp;1）好友首次下载58配配App，<br/>
+                    &nbsp;2）好友登录后完善其配配所有个人资料；<br/>
+                    </p>
+                </li>
+                <li>
+                    <p class="hdgz-cont"><span>4、</span>话费只能充值至验证成功的手机号；</p>
+                </li>
+                <li>
+                    <p class="hdgz-cont"><span>5、</span>奖励累加至30元即可提现，同一用户最多能得30元话费；</p>
+                </li>
+                <li>
+                    <p class="hdgz-cont"><span>6、</span>同一用户只能被邀请一次，同一手机号，同一设备号，同一账号均视为同一用户；</p>
+                </li>
+                <li>
+                    <p class="hdgz-cont"><span>8、</span>遇到问题？请微信告诉我们。微信号：wubapeipei </p>
+                </li>
+                <li>
+                    <p class="hdgz-cont"><span>9、</span>活动最终解释权归58同城所有。</p>
+                </li>
 
-<h3>
-<a id="hello-world" class="anchor" href="#hello-world" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hello world</h3>
+            </ul>
+        </div>
+    </div>
 
-<p>Hello world.</p>
+    <script type="text/javascript" src="http://j1.58cdn.com.cn/crop/zt/bangbang/m/libs/zepto/zepto.min.js"></script>
+    <script type="text/javascript" src="http://bangbang.58.com/mobile/jsapi/bangbangMobileCore-0.1.min.js"></script>
+    <script type="text/javascript" src="http://j1.58cdn.com.cn/crop/zt/bangbang/m/20151228/js/peipei_yy_app_common.js?v=9"></script>
+    <script type="text/javascript" src="http://j1.58cdn.com.cn/crop/zt/bangbang/m/20151228/js/peipei_yy_app.js?v=11"></script>
 
-      <footer class="site-footer">
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
-  </body>
+    <!-- <script type="text/javascript">
+        $(function(){
+            loadJs('trackJs',"http://tracklog.58.com/referrer_m.js", function(){
+                 clickLog("from=fxhdym_shoujiyanzheng");
+            });
+        });
+    </script> -->
+</body>
 </html>
