@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 	<title>58配配</title>
-	<script type="text/javascript" src="1.js"></script>
 	<script>
 		var fontsize=function () {
 		    var W=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
@@ -15,21 +14,17 @@
 		    document.getElementsByTagName('html')[0].style.fontSize = (W / defaultW * defaultSize).toFixed(2) + 'px';
 		}
 		fontsize();
-		function sendUrl(str) {
-            var argArr=[];
-            argArr.push(str)                 //第1个携带的参数
-            argArr.push("finish")            //第2个携带的参数
-            _BB.executeNative("goNativeView",argArr,null)
-        }
 	</script>
 	<style>
 		#bg{
 			width:100%;
 			height:auto;
 		}
-		input{
+		a:link{
+			text-decoration: none;
+		}
+		a{
 			display:block;
-			border:none;
 			width:60%;
 			height:50px;
 			line-height: 50px;
@@ -40,20 +35,58 @@
 			font-size: 1.6rem;
 			text-align:center;
 		}
+		a:hover{
+			background-color:#0F62A5;
+		}
 	</style>
 </head>
 <body>
 	<div id="bg">
-		<input type="button" value="老板圈" onclick="sendUrl('bjob_circle_comment')">
-		<input type="button" value="配配小秘" onclick="sendUrl('pp_small_secretary')">
-		<input type="button" value="我的动态" onclick="sendUrl('pp_my_dynamic')">
-		<input type="button" value="最新动态" onclick="sendUrl('pp_new_dynamic')">
-		<input type="button" value="系统消息" onclick="sendUrl('pp_sys_msg')">
-		<input type="button" value="今日缘分" onclick="sendUrl('pp_destined')">
-		<input type="button" value="搜职位" onclick="sendUrl('pp_search_job')">
-		<input type="button" value="个人资料" onclick="sendUrl('pp_personal_info')">
-		<input type="button" value="我的简历" onclick="sendUrl('pp_my_resume')">
-		<input type="button" value="签到送花跳转配配朋友" onclick="sendUrl('peipei_friend')">
+		<a href="http://bangbang.ios.operation.native?pushtype=bjob_circle_comment" pushtype="bjob_circle_comment">老板圈</a>
+		<a href="http://bangbang.ios.operation.native?pushtype=pp_small_secretary" pushtype="pp_small_secretary">配配小秘</a>
+		<a href="http://bangbang.ios.operation.native?pushtype=pp_my_dynamic" pushtype="pp_my_dynamic">我的动态</a>
+		<a href="http://bangbang.ios.operation.native?pushtype=pp_new_dynamic" pushtype="pp_new_dynamic">最新动态</a>
+		<a href="http://bangbang.ios.operation.native?pushtype=pp_sys_msg" pushtype="pp_sys_msg">系统消息</a>
+		<a href="http://bangbang.ios.operation.native?pushtype=pp_destined" pushtype="pp_destined">今日缘分</a>
+		<a href="http://bangbang.ios.operation.native?pushtype=pp_search_job" pushtype="pp_search_job">搜职位</a>
+		<a href="http://bangbang.ios.operation.native?pushtype=pp_personal_info" pushtype="pp_personal_info">个人资料</a>
+		<a href="http://bangbang.ios.operation.native?pushtype=pp_my_resume" pushtype="pp_my_resume">我的简历</a>
+		<a href="http://bangbang.ios.operation.native?pushtype=peipei_friend_" pushtype="peipei_friend">签到送花跳转配配朋友</a>
 	</div>
+
+	<script>
+		function foo(){
+			var get_a=document.getElementsByTagName("a");
+			var arr = [];
+			for(var i=0;i<get_a.length;i++){
+				var j=0;
+				arr[j]=(function(i){ 
+					var _href=get_a[i].getAttribute("data-href");
+					var _pushtype=get_a[i].getAttribute("pushtype");   
+			        get_a[i].onclick = function () {        
+			            arr=_href+"?pushtype="+_pushtype;
+			            var data = "http://"+_href+"?pushtype="+_pushtype; 
+			            ajax(data); 
+			        }      
+			  	})(i);  
+			}
+		}
+		result=foo();
+		function ajax(data){
+			var xmlhttp;
+			if (window.XMLHttpRequest){
+			  xmlhttp=new XMLHttpRequest();
+			}
+			else{
+			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function(){
+			  if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			  }
+			}
+			xmlhttp.open("GET",data,true);
+			xmlhttp.send();
+		};	
+	</script>
 </body>
 </html>
