@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: baichao.hi!
-subtitle: welcome to my webpage!
-description: This is baichao's little house
-author: baichao
-language: zh-Hans
-timezone: 
+title: Hexo
+subtitle:
+description:
+author: John Doe
+language:
+timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.baichaohi.cn
+url: http://yoursite.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -63,8 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: next
-avatar: /image/yinmuhuadao.jpg
+theme: landscape
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
