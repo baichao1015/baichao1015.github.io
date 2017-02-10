@@ -84,25 +84,34 @@
 
 
 
-<meta name="description" content="Thinking in Java 笔记1.多态对象调用顺序：
+<meta name="description" content="Thinking in Java 笔记Chapter8 多态对象调用顺序：
 调用基类的构造器
 按声明顺序调用成员的初始化方法
-调用导出类构造器的主体">
+调用导出类构造器的主体
+
+对象销毁顺序：对于继承的层次结构中，如果一个类需要被销毁，应该先对其导出类进行清理，然后才是基类。
+构造器编写准则用尽可能简单的方法使对象进入正常状态；如果可以的话，避免调用其他方法。构造器内唯一能够安全调用的那些方法是基类中的final方法（也适">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Thinking in Java 笔记">
 <meta property="og:url" content="http://www.baichaohi.cn/2017/02/09/Thinking-in-Java-笔记/index.html">
 <meta property="og:site_name" content="keep passion">
-<meta property="og:description" content="Thinking in Java 笔记1.多态对象调用顺序：
+<meta property="og:description" content="Thinking in Java 笔记Chapter8 多态对象调用顺序：
 调用基类的构造器
 按声明顺序调用成员的初始化方法
-调用导出类构造器的主体">
-<meta property="og:updated_time" content="2017-02-09T09:41:38.000Z">
+调用导出类构造器的主体
+
+对象销毁顺序：对于继承的层次结构中，如果一个类需要被销毁，应该先对其导出类进行清理，然后才是基类。
+构造器编写准则用尽可能简单的方法使对象进入正常状态；如果可以的话，避免调用其他方法。构造器内唯一能够安全调用的那些方法是基类中的final方法（也适">
+<meta property="og:updated_time" content="2017-02-10T08:46:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thinking in Java 笔记">
-<meta name="twitter:description" content="Thinking in Java 笔记1.多态对象调用顺序：
+<meta name="twitter:description" content="Thinking in Java 笔记Chapter8 多态对象调用顺序：
 调用基类的构造器
 按声明顺序调用成员的初始化方法
-调用导出类构造器的主体">
+调用导出类构造器的主体
+
+对象销毁顺序：对于继承的层次结构中，如果一个类需要被销毁，应该先对其导出类进行清理，然后才是基类。
+构造器编写准则用尽可能简单的方法使对象进入正常状态；如果可以的话，避免调用其他方法。构造器内唯一能够安全调用的那些方法是基类中的final方法（也适">
 
 
 
@@ -324,11 +333,18 @@
       
 
       
-        <h1 id="Thinking-in-Java-笔记"><a href="#Thinking-in-Java-笔记" class="headerlink" title="Thinking in Java 笔记"></a>Thinking in Java 笔记</h1><h2 id="1-多态"><a href="#1-多态" class="headerlink" title="1.多态"></a>1.多态</h2><h3 id="对象调用顺序："><a href="#对象调用顺序：" class="headerlink" title="对象调用顺序："></a>对象调用顺序：</h3><ol>
+        <h1 id="Thinking-in-Java-笔记"><a href="#Thinking-in-Java-笔记" class="headerlink" title="Thinking in Java 笔记"></a>Thinking in Java 笔记</h1><h2 id="Chapter8-多态"><a href="#Chapter8-多态" class="headerlink" title="Chapter8 多态"></a>Chapter8 多态</h2><h3 id="对象调用顺序："><a href="#对象调用顺序：" class="headerlink" title="对象调用顺序："></a>对象调用顺序：</h3><ol>
 <li>调用基类的构造器</li>
 <li>按声明顺序调用成员的初始化方法</li>
 <li>调用导出类构造器的主体</li>
 </ol>
+<h3 id="对象销毁顺序："><a href="#对象销毁顺序：" class="headerlink" title="对象销毁顺序："></a>对象销毁顺序：</h3><p>对于继承的层次结构中，如果一个类需要被销毁，应该先对其导出类进行清理，然后才是基类。</p>
+<h3 id="构造器编写准则"><a href="#构造器编写准则" class="headerlink" title="构造器编写准则"></a>构造器编写准则</h3><p>用尽可能简单的方法使对象进入正常状态；如果可以的话，避免调用其他方法。构造器内唯一能够安全调用的那些方法是基类中的final方法（也适用于private方法，他们自动属于final方法）。</p>
+<h3 id="继承准则"><a href="#继承准则" class="headerlink" title="继承准则"></a>继承准则</h3><blockquote>
+<p>用继承表达行为间的差异，并用字段表达状态上的变化。</p>
+</blockquote>
+<h2 id="Chapter9-接口"><a href="#Chapter9-接口" class="headerlink" title="Chapter9 接口"></a>Chapter9 接口</h2><h3 id="接口嵌套以及作用域"><a href="#接口嵌套以及作用域" class="headerlink" title="接口嵌套以及作用域"></a>接口嵌套以及作用域</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> B bRef;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">interface</span> <span class="title">B</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">BImp</span> <span class="keyword">implements</span> <span class="title">B</span> </span>&#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BImp2</span> <span class="keyword">implements</span> <span class="title">B</span> </span>&#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> B <span class="title">getB</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BImp2();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiveB</span><span class="params">(B b)</span> </span>&#123;</div><div class="line">        bRef = b;</div><div class="line">        bRef.f();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NestingInterfaces</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        A a = <span class="keyword">new</span> A();</div><div class="line"></div><div class="line">        <span class="comment">//B是private,无法访问</span></div><div class="line">        <span class="comment">//!  A.B ab = a.getB();</span></div><div class="line"></div><div class="line">        <span class="comment">//需要A.BImp2,但是返回的是A.B</span></div><div class="line">        <span class="comment">//!  A.BImp2 bImp2 = a.getB();</span></div><div class="line"></div><div class="line">        <span class="comment">//不能访问接口的成员</span></div><div class="line">        <span class="comment">//! a.getB().f();</span></div><div class="line">      </div><div class="line">        <span class="comment">//只有另一个A可以对getB()做操作</span></div><div class="line">        A a2 = <span class="keyword">new</span> A();</div><div class="line">        a2.receiveB(a.getB());</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -485,7 +501,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thinking-in-Java-笔记"><span class="nav-number">1.</span> <span class="nav-text">Thinking in Java 笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-多态"><span class="nav-number">1.1.</span> <span class="nav-text">1.多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象调用顺序："><span class="nav-number">1.1.1.</span> <span class="nav-text">对象调用顺序：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thinking-in-Java-笔记"><span class="nav-number">1.</span> <span class="nav-text">Thinking in Java 笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter8-多态"><span class="nav-number">1.1.</span> <span class="nav-text">Chapter8 多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象调用顺序："><span class="nav-number">1.1.1.</span> <span class="nav-text">对象调用顺序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象销毁顺序："><span class="nav-number">1.1.2.</span> <span class="nav-text">对象销毁顺序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器编写准则"><span class="nav-number">1.1.3.</span> <span class="nav-text">构造器编写准则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承准则"><span class="nav-number">1.1.4.</span> <span class="nav-text">继承准则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter9-接口"><span class="nav-number">1.2.</span> <span class="nav-text">Chapter9 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口嵌套以及作用域"><span class="nav-number">1.2.1.</span> <span class="nav-text">接口嵌套以及作用域</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
