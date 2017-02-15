@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -94,7 +94,7 @@
 <meta property="og:description" content="Thinking in Java 笔记（二）Chapter14 类型信息当使用“.class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤：
 加载。这是由类加载器执行的。该步骤将查找字节码（通常在classpath所指定的路径中查找，但这并非是必须的），并从这些字节码中创建一个Class对象。
 链接。在链接阶段将验证类中的字节码，为静态">
-<meta property="og:updated_time" content="2017-02-15T03:35:37.000Z">
+<meta property="og:updated_time" content="2017-02-15T04:58:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thinking in Java 笔记(二)">
 <meta name="twitter:description" content="Thinking in Java 笔记（二）Chapter14 类型信息当使用“.class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤：
@@ -326,6 +326,7 @@
 <li><em>链接</em>。在链接阶段将验证类中的字节码，为静态域分配存储空间，并且如果是必须的话，将解析这个类创建的对其他类的所有引用。</li>
 <li><em>初始化</em>。如果该类具有超类，则对其初始化，执行静态初始化器和静态初始化快。</li>
 </ol>
+<p>初始化有效的实现了尽可能的“惰性”。仅使用.class语法老获得对类的引用不会引发初始化。但是，为了产生Class引用，Class .forName()立即就进行了初始化。如果一个static final值是<em>编译器常量</em>，那么这个值不需要对类进行初始化就可以读取。但是，如果只是讲一个域设置为static和final的，还不足以确保这种行为（如果不是编译期常量）。如果一个static域不是final的，那么在对它访问时，总是要求在它被读取前先进行链接和初始化。</p>
 
       
     </div>
@@ -346,6 +347,12 @@
 
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
       
 
       
