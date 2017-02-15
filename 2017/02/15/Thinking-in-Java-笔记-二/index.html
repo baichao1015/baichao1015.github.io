@@ -84,19 +84,22 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="Thinking in Java 笔记（二）Chapter14 类型信息当使用“.class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤：
+加载。这是由类加载器执行的。该步骤将查找字节码（通常在classpath所指定的路径中查找，但这并非是必须的），并从这些字节码中创建一个Class对象。
+链接。在链接阶段将验证类中的字节码，为静态">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://www.baichaohi.cn/2017/02/07/hello-world/index.html">
+<meta property="og:title" content="Thinking in Java 笔记(二)">
+<meta property="og:url" content="http://www.baichaohi.cn/2017/02/15/Thinking-in-Java-笔记-二/index.html">
 <meta property="og:site_name" content="keep passion">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2017-02-07T03:26:59.000Z">
+<meta property="og:description" content="Thinking in Java 笔记（二）Chapter14 类型信息当使用“.class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤：
+加载。这是由类加载器执行的。该步骤将查找字节码（通常在classpath所指定的路径中查找，但这并非是必须的），并从这些字节码中创建一个Class对象。
+链接。在链接阶段将验证类中的字节码，为静态">
+<meta property="og:updated_time" content="2017-02-15T03:35:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="Thinking in Java 笔记(二)">
+<meta name="twitter:description" content="Thinking in Java 笔记（二）Chapter14 类型信息当使用“.class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤：
+加载。这是由类加载器执行的。该步骤将查找字节码（通常在classpath所指定的路径中查找，但这并非是必须的），并从这些字节码中创建一个Class对象。
+链接。在链接阶段将验证类中的字节码，为静态">
 
 
 
@@ -124,13 +127,13 @@ Quick">
 
 
 
-  <link rel="canonical" href="http://www.baichaohi.cn/2017/02/07/hello-world/"/>
+  <link rel="canonical" href="http://www.baichaohi.cn/2017/02/15/Thinking-in-Java-笔记-二/"/>
 
 
 
 
 
-  <title> Hello World | keep passion </title>
+  <title> Thinking in Java 笔记(二) | keep passion </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +246,7 @@ Quick">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/02/07/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/02/15/Thinking-in-Java-笔记-二/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="超">
@@ -267,7 +270,7 @@ Quick">
             
             
               
-                Hello World
+                Thinking in Java 笔记(二)
               
             
           </h1>
@@ -282,8 +285,8 @@ Quick">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-07T11:26:59+08:00">
-                2017-02-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T11:23:35+08:00">
+                2017-02-15
               </time>
             
 
@@ -318,15 +321,11 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h1 id="Thinking-in-Java-笔记（二）"><a href="#Thinking-in-Java-笔记（二）" class="headerlink" title="Thinking in Java 笔记（二）"></a>Thinking in Java 笔记（二）</h1><h2 id="Chapter14-类型信息"><a href="#Chapter14-类型信息" class="headerlink" title="Chapter14 类型信息"></a>Chapter14 类型信息</h2><h4 id="当使用“-class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤："><a href="#当使用“-class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤：" class="headerlink" title="当使用“.class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤："></a>当使用“.class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤：</h4><ol>
+<li><em>加载</em>。这是由类加载器执行的。该步骤将查找字节码（通常在classpath所指定的路径中查找，但这并非是必须的），并从这些字节码中创建一个Class对象。</li>
+<li><em>链接</em>。在链接阶段将验证类中的字节码，为静态域分配存储空间，并且如果是必须的话，将解析这个类创建的对其他类的所有引用。</li>
+<li><em>初始化</em>。如果该类具有超类，则对其初始化，执行静态初始化器和静态初始化快。</li>
+</ol>
 
       
     </div>
@@ -353,15 +352,15 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/02/14/Java集合框架/" rel="next" title="Java集合框架">
+                <i class="fa fa-chevron-left"></i> Java集合框架
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/07/2017-brand-new-life/" rel="prev" title="2017,brand new life">
-                2017,brand new life <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -477,7 +476,7 @@ Quick">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thinking-in-Java-笔记（二）"><span class="nav-number">1.</span> <span class="nav-text">Thinking in Java 笔记（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter14-类型信息"><span class="nav-number">1.1.</span> <span class="nav-text">Chapter14 类型信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当使用“-class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤："><span class="nav-number">1.1.0.1.</span> <span class="nav-text">当使用“.class”来创建对Class对象的引用时，不会自动的初始化该Class对象。为了使用类而做的准备工作实际包含三个步骤：</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
