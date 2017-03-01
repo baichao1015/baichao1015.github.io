@@ -87,8 +87,9 @@
 <meta name="description" content="Thinking in Java笔记-枚举基本enum特性
 调用enum的value()方法，可以便利enum实例。values()方法返回enum实例的数组，而且该数组中的元素严格保持其在enum中声明时的顺序，所以可以在循环中使用values()放回的数组。
 将静态导入用于enum(使用static import)。
+enum可以使用在switch语句中。
 
-1234567891011121314151617181920212223">
+12345678910111213">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Thinking in Java笔记 枚举">
 <meta property="og:url" content="http://www.baichaohi.cn/2017/03/01/Thinking-in-Java笔记-枚举/index.html">
@@ -96,16 +97,18 @@
 <meta property="og:description" content="Thinking in Java笔记-枚举基本enum特性
 调用enum的value()方法，可以便利enum实例。values()方法返回enum实例的数组，而且该数组中的元素严格保持其在enum中声明时的顺序，所以可以在循环中使用values()放回的数组。
 将静态导入用于enum(使用static import)。
+enum可以使用在switch语句中。
 
-1234567891011121314151617181920212223">
-<meta property="og:updated_time" content="2017-03-01T06:36:29.000Z">
+12345678910111213">
+<meta property="og:updated_time" content="2017-03-01T08:01:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thinking in Java笔记 枚举">
 <meta name="twitter:description" content="Thinking in Java笔记-枚举基本enum特性
 调用enum的value()方法，可以便利enum实例。values()方法返回enum实例的数组，而且该数组中的元素严格保持其在enum中声明时的顺序，所以可以在循环中使用values()放回的数组。
 将静态导入用于enum(使用static import)。
+enum可以使用在switch语句中。
 
-1234567891011121314151617181920212223">
+12345678910111213">
 
 
 
@@ -328,8 +331,9 @@
 
       
         <h1 id="Thinking-in-Java笔记-枚举"><a href="#Thinking-in-Java笔记-枚举" class="headerlink" title="Thinking in Java笔记-枚举"></a>Thinking in Java笔记-枚举</h1><h2 id="基本enum特性"><a href="#基本enum特性" class="headerlink" title="基本enum特性"></a>基本enum特性</h2><ul>
-<li>调用enum的value()方法，可以便利enum实例。values()方法返回enum实例的数组，而且该数组中的元素严格保持其在enum中声明时的顺序，所以可以在循环中使用values()放回的数组。</li>
-<li>将静态导入用于enum(使用static import)。</li>
+<li>调用<em>enum</em>的<em>value()</em>方法，可以便利<em>enum</em>实例。<em>values()</em>方法返回<em>enum</em>实例的数组，而且该数组中的元素严格保持其在<em>enum</em>中声明时的顺序，所以可以在循环中使用<em>values()</em>放回的数组。</li>
+<li>将静态导入用于<em>enum</em>(使用<em>static import</em>)。</li>
+<li><em>enum</em>可以使用在<em>switch</em>语句中。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Shrubbery &#123;</div><div class="line">    GROUNG,</div><div class="line">    CRAWING,</div><div class="line">    HANGING</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (Shrubbery s : Shrubbery.values()) &#123;</div><div class="line">            System.out.println(s + <span class="string">"ordinal:"</span> + s.ordinal());</div><div class="line">            System.out.println(s.compareTo(Shrubbery.CRAWING));</div><div class="line">            System.out.println(s.equals(Shrubbery.CRAWING));</div><div class="line">            System.out.println(s == Shrubbery.CRAWING);</div><div class="line">            System.out.println(s.getDeclaringClass());</div><div class="line">            System.out.println(s.name());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//GROUNGordinal:0</span></div><div class="line"><span class="comment">//-1</span></div><div class="line"><span class="comment">//false</span></div><div class="line"><span class="comment">//false</span></div><div class="line"><span class="comment">//class com.example.baichao.myapplication.myenum.Shrubbery</span></div><div class="line"><span class="comment">//GROUNG</span></div><div class="line"><span class="comment">//CRAWINGordinal:1</span></div><div class="line"><span class="comment">//0</span></div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//class com.example.baichao.myapplication.myenum.Shrubbery</span></div><div class="line"><span class="comment">//CRAWING</span></div><div class="line"><span class="comment">//HANGINGordinal:2</span></div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="comment">//false</span></div><div class="line"><span class="comment">//false</span></div><div class="line"><span class="comment">//class com.example.baichao.myapplication.myenum.Shrubbery</span></div><div class="line"><span class="comment">//HANGING</span></div></pre></td></tr></table></figure>
 <h2 id="向enum中添加新的方法"><a href="#向enum中添加新的方法" class="headerlink" title="向enum中添加新的方法"></a>向enum中添加新的方法</h2><p>除了不能继承自一个<em>enum</em>之外，我们基本上可以将<em>enum</em>看做一个常规的类，也就是说，我们可以向<em>enum</em>中添加方法。<em>enum</em>甚至可以有<em>main()</em>方法。</p>
@@ -338,6 +342,7 @@
 <li>如果打算定义自己的方法，那么必须在<em>enum</em>实例序列的最后添加一个分号。</li>
 <li>同时，必须先定义<em>enum</em>实例，如果在定义<em>enum</em>实例之前定义了任何方法或者属性，那么在编译时就会得到错误信息。</li>
 </ul>
+<h2 id="神秘的Values-方法"><a href="#神秘的Values-方法" class="headerlink" title="神秘的Values()方法"></a>神秘的Values()方法</h2><p>编译器为你创建的<em>enum</em>类都是继承自<em>Enum</em>类。然而，如果你研究一下<em>Enum</em>类就会发现，它并没有<em>values()</em>方法。通过反编译可以知道答案，<em>values()</em>是由编译器添加的<em>static</em>方法。在创建自己的<em>enum</em>类的过程中，编译器还未其添加了<em>valueOf()</em>方法，而且这个<em>valueOf()</em>方法与本来的不一样，新增的只有一个参数，本来的需要两个参数。然后编译器还会将你的enum编辑为final类，所以无法被继承，还有一个<em>static</em>初始化子句。</p>
 
       
     </div>
@@ -494,7 +499,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thinking-in-Java笔记-枚举"><span class="nav-number">1.</span> <span class="nav-text">Thinking in Java笔记-枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本enum特性"><span class="nav-number">1.1.</span> <span class="nav-text">基本enum特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向enum中添加新的方法"><span class="nav-number">1.2.</span> <span class="nav-text">向enum中添加新的方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thinking-in-Java笔记-枚举"><span class="nav-number">1.</span> <span class="nav-text">Thinking in Java笔记-枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本enum特性"><span class="nav-number">1.1.</span> <span class="nav-text">基本enum特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向enum中添加新的方法"><span class="nav-number">1.2.</span> <span class="nav-text">向enum中添加新的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神秘的Values-方法"><span class="nav-number">1.3.</span> <span class="nav-text">神秘的Values()方法</span></a></li></ol></li></ol></div>
             
 
           </div>
