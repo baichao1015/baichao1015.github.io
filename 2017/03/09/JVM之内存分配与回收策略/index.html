@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JVM," />
 
 
 
@@ -84,19 +84,40 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="Java体系中所提倡的自动内存管理最终可以归结为自动化地解决两个问题：
+
+给对象分配内存
+以及回收分配给对象的内存
+
+GC的区别
+
+新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快。
+老年代GC（Major GC/Full GC）：指发生在老年代的GC，出现了Major GC，经常会伴随至少一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://www.baichaohi.cn/2017/02/07/hello-world/index.html">
+<meta property="og:title" content="JVM之内存分配与回收策略">
+<meta property="og:url" content="http://www.baichaohi.cn/2017/03/09/JVM之内存分配与回收策略/index.html">
 <meta property="og:site_name" content="keep passion">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2017-02-07T03:26:59.000Z">
+<meta property="og:description" content="Java体系中所提倡的自动内存管理最终可以归结为自动化地解决两个问题：
+
+给对象分配内存
+以及回收分配给对象的内存
+
+GC的区别
+
+新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快。
+老年代GC（Major GC/Full GC）：指发生在老年代的GC，出现了Major GC，经常会伴随至少一">
+<meta property="og:updated_time" content="2017-03-10T10:33:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="JVM之内存分配与回收策略">
+<meta name="twitter:description" content="Java体系中所提倡的自动内存管理最终可以归结为自动化地解决两个问题：
+
+给对象分配内存
+以及回收分配给对象的内存
+
+GC的区别
+
+新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快。
+老年代GC（Major GC/Full GC）：指发生在老年代的GC，出现了Major GC，经常会伴随至少一">
 
 
 
@@ -124,13 +145,13 @@ Quick">
 
 
 
-  <link rel="canonical" href="http://www.baichaohi.cn/2017/02/07/hello-world/"/>
+  <link rel="canonical" href="http://www.baichaohi.cn/2017/03/09/JVM之内存分配与回收策略/"/>
 
 
 
 
 
-  <title> Hello World | keep passion </title>
+  <title> JVM之内存分配与回收策略 | keep passion </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +264,7 @@ Quick">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/02/07/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/03/09/JVM之内存分配与回收策略/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="超">
@@ -267,7 +288,7 @@ Quick">
             
             
               
-                Hello World
+                JVM之内存分配与回收策略
               
             
           </h1>
@@ -282,8 +303,8 @@ Quick">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-07T11:26:59+08:00">
-                2017-02-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T17:52:29+08:00">
+                2017-03-09
               </time>
             
 
@@ -318,16 +339,19 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+        <p><strong>Java体系中所提倡的自动内存管理最终可以归结为自动化地解决两个问题：</strong></p>
+<ul>
+<li>给对象分配内存</li>
+<li>以及回收分配给对象的内存</li>
+</ul>
+<p><strong>GC的区别</strong></p>
+<ul>
+<li>新生代GC（<em>Minor GC</em>）：指发生在新生代的垃圾收集动作，因为<em>Java</em>对象大多都具备朝生夕灭的特性，所以<em>Minor GC</em>非常频繁，一般回收速度也比较快。</li>
+<li>老年代GC（<em>Major GC/Full GC</em>）：指发生在老年代的<em>GC</em>，出现了<em>Major GC</em>，经常会伴随至少一次的<em>Minor GC</em>（但非绝对的，在<em>Parallel Scavenge</em>收集器策略里就有直接进行<em>Major GC</em>的策略选择过程）。<em>Major GC</em>的速度一般会比<em>Minor GC</em>慢10倍以上。</li>
+</ul>
+<h5 id="对象优先在Eden分配"><a href="#对象优先在Eden分配" class="headerlink" title="对象优先在Eden分配"></a>对象优先在Eden分配</h5><p>大多数情况下，对象在新生代Eden区中分配。当Eden去没有足够空间进行分配时，虚拟机将发起一次<em>Minor GC</em>。</p>
+<h5 id="大对象直接进入老年代"><a href="#大对象直接进入老年代" class="headerlink" title="大对象直接进入老年代"></a>大对象直接进入老年代</h5><p>大对象是指需要大量连续内存空间的Java对象，最典型的大对象是很长的字符串以及数组。经常出现大对象容易导致内存还有不少空间时就提前触发垃圾收集以获取足够的连续空间来安置它们。</p>
+<h5 id="长期存活的对象将进入老年代"><a href="#长期存活的对象将进入老年代" class="headerlink" title="长期存活的对象将进入老年代"></a>长期存活的对象将进入老年代</h5>
       
     </div>
 
@@ -348,20 +372,26 @@ Quick">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/09/JVM之垃圾收集器/" rel="next" title="JVM之垃圾收集器">
+                <i class="fa fa-chevron-left"></i> JVM之垃圾收集器
+              </a>
             
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/07/2017-brand-new-life/" rel="prev" title="2017,brand new life">
-                2017,brand new life <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -477,7 +507,7 @@ Quick">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#对象优先在Eden分配"><span class="nav-number">1.</span> <span class="nav-text">对象优先在Eden分配</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#大对象直接进入老年代"><span class="nav-number">2.</span> <span class="nav-text">大对象直接进入老年代</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#长期存活的对象将进入老年代"><span class="nav-number">3.</span> <span class="nav-text">长期存活的对象将进入老年代</span></a></li></ol></div>
             
 
           </div>
