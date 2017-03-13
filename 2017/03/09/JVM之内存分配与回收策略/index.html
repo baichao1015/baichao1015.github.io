@@ -106,7 +106,7 @@ GC的区别
 
 新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快。
 老年代GC（Major GC/Full GC）：指发生在老年代的GC，出现了Major GC，经常会伴随至少一">
-<meta property="og:updated_time" content="2017-03-10T10:33:24.000Z">
+<meta property="og:updated_time" content="2017-03-13T06:19:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM之内存分配与回收策略">
 <meta name="twitter:description" content="Java体系中所提倡的自动内存管理最终可以归结为自动化地解决两个问题：
@@ -349,9 +349,17 @@ GC的区别
 <li>新生代GC（<em>Minor GC</em>）：指发生在新生代的垃圾收集动作，因为<em>Java</em>对象大多都具备朝生夕灭的特性，所以<em>Minor GC</em>非常频繁，一般回收速度也比较快。</li>
 <li>老年代GC（<em>Major GC/Full GC</em>）：指发生在老年代的<em>GC</em>，出现了<em>Major GC</em>，经常会伴随至少一次的<em>Minor GC</em>（但非绝对的，在<em>Parallel Scavenge</em>收集器策略里就有直接进行<em>Major GC</em>的策略选择过程）。<em>Major GC</em>的速度一般会比<em>Minor GC</em>慢10倍以上。</li>
 </ul>
-<h5 id="对象优先在Eden分配"><a href="#对象优先在Eden分配" class="headerlink" title="对象优先在Eden分配"></a>对象优先在Eden分配</h5><p>大多数情况下，对象在新生代Eden区中分配。当Eden去没有足够空间进行分配时，虚拟机将发起一次<em>Minor GC</em>。</p>
-<h5 id="大对象直接进入老年代"><a href="#大对象直接进入老年代" class="headerlink" title="大对象直接进入老年代"></a>大对象直接进入老年代</h5><p>大对象是指需要大量连续内存空间的Java对象，最典型的大对象是很长的字符串以及数组。经常出现大对象容易导致内存还有不少空间时就提前触发垃圾收集以获取足够的连续空间来安置它们。</p>
-<h5 id="长期存活的对象将进入老年代"><a href="#长期存活的对象将进入老年代" class="headerlink" title="长期存活的对象将进入老年代"></a>长期存活的对象将进入老年代</h5>
+<p><strong>对象优先在Eden分配</strong></p>
+<p>大多数情况下，对象在新生代Eden区中分配。当Eden去没有足够空间进行分配时，虚拟机将发起一次<em>Minor GC</em>。</p>
+<p><strong>大对象直接进入老年代</strong></p>
+<p>大对象是指需要大量连续内存空间的Java对象，最典型的大对象是很长的字符串以及数组。经常出现大对象容易导致内存还有不少空间时就提前触发垃圾收集以获取足够的连续空间来安置它们。</p>
+<p><strong>长期存活的对象将进入老年代</strong></p>
+<p>虚拟机给每个对象定义了一个对象年龄计算器。如果对象在Eden出生并经过一次Minor GC后仍然存活，并且能被Survivor容纳的话，将被移动到Survivor空间中，并且对象年龄设为1。对象在Survivor区中每“熬过”一次Minor GC，年龄就增加一岁，当它的年龄增加得到一定程度（默认为15岁），就会被晋升到老年代中。对象晋升老奶奶年代的年龄阈值，可以通过参数配置 -XX:MaxTernuringThreshold设置。</p>
+<p><strong>动态对象年龄判定</strong></p>
+<p>为了能更好地适应不同程序的内存状况，虚拟机并不是永远地要求对象的年龄必须达到了MaxTenuringTreshold才能晋升老年代，如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一般，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到MaxtenuringThreshold中要求的年龄。</p>
+<p><strong>空间分配担保</strong></p>
+<p>在发生<em>Minor GC</em>之前，虚拟机会先检查老年代最大可用的连续空间是否大于新生代所有对象总空间，如果这个条件成立，那么<em>Minor GC</em>可以确保安全的。如果不成立，则虚拟机会查看<em>HandlePromotionFailure</em>设置值是否允许担保失败。如果允许，那么会继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，如果大于，将尝试着进行一次<em>Minor GC</em>，尽管这次<em>Minor GC</em>是有风险的；如果小于，或者<em>HandlePromotionFailure</em>设置不允许冒险，那这时也要改为进行一次Full GC。</p>
+
       
     </div>
 
@@ -438,17 +446,8 @@ GC的区别
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://odoy84a4u.bkt.clouddn.com/image/jpgIMG_0053.jpg"
@@ -497,22 +496,6 @@ GC的区别
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#对象优先在Eden分配"><span class="nav-number">1.</span> <span class="nav-text">对象优先在Eden分配</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#大对象直接进入老年代"><span class="nav-number">2.</span> <span class="nav-text">大对象直接进入老年代</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#长期存活的对象将进入老年代"><span class="nav-number">3.</span> <span class="nav-text">长期存活的对象将进入老年代</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
