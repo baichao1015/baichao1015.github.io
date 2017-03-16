@@ -238,6 +238,272 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/03/16/Android动画分析之Animation/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="超">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://odoy84a4u.bkt.clouddn.com/image/jpgIMG_0053.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="keep passion">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="keep passion" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/16/Android动画分析之Animation/" itemprop="url">
+                  Android动画分析之Animation
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-16T15:41:03+08:00">
+                2017-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>Android动画一直都在使用，今天分析一下其实现。</strong></p>
+<ul>
+<li><h3 id="首先从View的startAnimation开始"><a href="#首先从View的startAnimation开始" class="headerlink" title="首先从View的startAnimation开始"></a>首先从View的startAnimation开始</h3></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startAnimation</span><span class="params">(Animation animation)</span> </span>&#123;</div><div class="line">    animation.setStartTime(Animation.START_ON_FIRST_FRAME);</div><div class="line">    setAnimation(animation);</div><div class="line">    invalidateParentCaches();</div><div class="line">    invalidate(<span class="keyword">true</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过setAnimation设置动画变量并刷新父视图绘画缓存</p>
+<ul>
+<li><h3 id="然后是invalidate"><a href="#然后是invalidate" class="headerlink" title="然后是invalidate"></a>然后是invalidate</h3></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">invalidateInternal</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b, <span class="keyword">boolean</span> invalidateCache,</span></span></div><div class="line">        <span class="keyword">boolean</span> fullInvalidate) &#123;</div><div class="line">    <span class="keyword">if</span> (mGhostView != <span class="keyword">null</span>) &#123;</div><div class="line">        mGhostView.invalidate(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (skipInvalidate()) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ((mPrivateFlags &amp; (PFLAG_DRAWN | PFLAG_HAS_BOUNDS)) == (PFLAG_DRAWN | PFLAG_HAS_BOUNDS)</div><div class="line">            || (invalidateCache &amp;&amp; (mPrivateFlags &amp; PFLAG_DRAWING_CACHE_VALID) == PFLAG_DRAWING_CACHE_VALID)</div><div class="line">            || (mPrivateFlags &amp; PFLAG_INVALIDATED) != PFLAG_INVALIDATED</div><div class="line">            || (fullInvalidate &amp;&amp; isOpaque() != mLastIsOpaque)) &#123;</div><div class="line">        <span class="keyword">if</span> (fullInvalidate) &#123;</div><div class="line">            mLastIsOpaque = isOpaque();</div><div class="line">            mPrivateFlags &amp;= ~PFLAG_DRAWN;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        mPrivateFlags |= PFLAG_DIRTY;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (invalidateCache) &#123;</div><div class="line">            mPrivateFlags |= PFLAG_INVALIDATED;</div><div class="line">            mPrivateFlags &amp;= ~PFLAG_DRAWING_CACHE_VALID;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Propagate the damage rectangle to the parent view.</span></div><div class="line">        <span class="keyword">final</span> AttachInfo ai = mAttachInfo;</div><div class="line">        <span class="keyword">final</span> ViewParent p = mParent;</div><div class="line">        <span class="keyword">if</span> (p != <span class="keyword">null</span> &amp;&amp; ai != <span class="keyword">null</span> &amp;&amp; l &lt; r &amp;&amp; t &lt; b) &#123;</div><div class="line">            <span class="keyword">final</span> Rect damage = ai.mTmpInvalRect;</div><div class="line">            damage.set(l, t, r, b);</div><div class="line">            p.invalidateChild(<span class="keyword">this</span>, damage);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Damage the entire projection receiver, if necessary.</span></div><div class="line">        <span class="keyword">if</span> (mBackground != <span class="keyword">null</span> &amp;&amp; mBackground.isProjected()) &#123;</div><div class="line">            <span class="keyword">final</span> View receiver = getProjectionReceiver();</div><div class="line">            <span class="keyword">if</span> (receiver != <span class="keyword">null</span>) &#123;</div><div class="line">                receiver.damageInParent();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// Damage the entire IsolatedZVolume receiving this view's shadow.</span></div><div class="line">        <span class="keyword">if</span> (isHardwareAccelerated() &amp;&amp; getZ() != <span class="number">0</span>) &#123;</div><div class="line">            damageShadowReceiver();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><h3 id="invalidateChild"><a href="#invalidateChild" class="headerlink" title="invalidateChild"></a>invalidateChild</h3></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">invalidateChild</span><span class="params">(View child, <span class="keyword">final</span> Rect dirty)</span> </span>&#123;</div><div class="line">    ViewParent parent = <span class="keyword">this</span>;</div><div class="line"></div><div class="line">    <span class="keyword">final</span> AttachInfo attachInfo = mAttachInfo;</div><div class="line">    <span class="keyword">if</span> (attachInfo != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="comment">// If the child is drawing an animation, we want to copy this flag onto</span></div><div class="line">        <span class="comment">// ourselves and the parent to make sure the invalidate request goes</span></div><div class="line">        <span class="comment">// through</span></div><div class="line">        <span class="keyword">final</span> <span class="keyword">boolean</span> drawAnimation = (child.mPrivateFlags &amp; PFLAG_DRAW_ANIMATION)</div><div class="line">                == PFLAG_DRAW_ANIMATION;</div><div class="line"></div><div class="line">        <span class="comment">// Check whether the child that requests the invalidate is fully opaque</span></div><div class="line">        <span class="comment">// Views being animated or transformed are not considered opaque because we may</span></div><div class="line">        <span class="comment">// be invalidating their old position and need the parent to paint behind them.</span></div><div class="line">        Matrix childMatrix = child.getMatrix();</div><div class="line">        <span class="keyword">final</span> <span class="keyword">boolean</span> isOpaque = child.isOpaque() &amp;&amp; !drawAnimation &amp;&amp;</div><div class="line">                child.getAnimation() == <span class="keyword">null</span> &amp;&amp; childMatrix.isIdentity();</div><div class="line">        <span class="comment">// Mark the child as dirty, using the appropriate flag</span></div><div class="line">        <span class="comment">// Make sure we do not set both flags at the same time</span></div><div class="line">        <span class="keyword">int</span> opaqueFlag = isOpaque ? PFLAG_DIRTY_OPAQUE : PFLAG_DIRTY;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (child.mLayerType != LAYER_TYPE_NONE) &#123;</div><div class="line">            mPrivateFlags |= PFLAG_INVALIDATED;</div><div class="line">            mPrivateFlags &amp;= ~PFLAG_DRAWING_CACHE_VALID;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span>[] location = attachInfo.mInvalidateChildLocation;</div><div class="line">        location[CHILD_LEFT_INDEX] = child.mLeft;</div><div class="line">        location[CHILD_TOP_INDEX] = child.mTop;</div><div class="line">        <span class="keyword">if</span> (!childMatrix.isIdentity() ||</div><div class="line">                (mGroupFlags &amp; ViewGroup.FLAG_SUPPORT_STATIC_TRANSFORMATIONS) != <span class="number">0</span>) &#123;</div><div class="line">            RectF boundingRect = attachInfo.mTmpTransformRect;</div><div class="line">            boundingRect.set(dirty);</div><div class="line">            Matrix transformMatrix;</div><div class="line">            <span class="keyword">if</span> ((mGroupFlags &amp; ViewGroup.FLAG_SUPPORT_STATIC_TRANSFORMATIONS) != <span class="number">0</span>) &#123;</div><div class="line">                Transformation t = attachInfo.mTmpTransformation;</div><div class="line">                <span class="keyword">boolean</span> transformed = getChildStaticTransformation(child, t);</div><div class="line">                <span class="keyword">if</span> (transformed) &#123;</div><div class="line">                    transformMatrix = attachInfo.mTmpMatrix;</div><div class="line">                    transformMatrix.set(t.getMatrix());</div><div class="line">                    <span class="keyword">if</span> (!childMatrix.isIdentity()) &#123;</div><div class="line">                        transformMatrix.preConcat(childMatrix);</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    transformMatrix = childMatrix;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                transformMatrix = childMatrix;</div><div class="line">            &#125;</div><div class="line">            transformMatrix.mapRect(boundingRect);</div><div class="line">            dirty.set((<span class="keyword">int</span>) (boundingRect.left - <span class="number">0.5f</span>),</div><div class="line">                    (<span class="keyword">int</span>) (boundingRect.top - <span class="number">0.5f</span>),</div><div class="line">                    (<span class="keyword">int</span>) (boundingRect.right + <span class="number">0.5f</span>),</div><div class="line">                    (<span class="keyword">int</span>) (boundingRect.bottom + <span class="number">0.5f</span>));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            View view = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">if</span> (parent <span class="keyword">instanceof</span> View) &#123;</div><div class="line">                view = (View) parent;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (drawAnimation) &#123;</div><div class="line">                <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</div><div class="line">                    view.mPrivateFlags |= PFLAG_DRAW_ANIMATION;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (parent <span class="keyword">instanceof</span> ViewRootImpl) &#123;</div><div class="line">                    ((ViewRootImpl) parent).mIsAnimating = <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// If the parent is dirty opaque or not dirty, mark it dirty with the opaque</span></div><div class="line">            <span class="comment">// flag coming from the child that initiated the invalidate</span></div><div class="line">            <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">if</span> ((view.mViewFlags &amp; FADING_EDGE_MASK) != <span class="number">0</span> &amp;&amp;</div><div class="line">                        view.getSolidColor() == <span class="number">0</span>) &#123;</div><div class="line">                    opaqueFlag = PFLAG_DIRTY;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> ((view.mPrivateFlags &amp; PFLAG_DIRTY_MASK) != PFLAG_DIRTY) &#123;</div><div class="line">                    view.mPrivateFlags = (view.mPrivateFlags &amp; ~PFLAG_DIRTY_MASK) | opaqueFlag;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            parent = parent.invalidateChildInParent(location, dirty);</div><div class="line">            <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="comment">// Account for transform on current parent</span></div><div class="line">                Matrix m = view.getMatrix();</div><div class="line">                <span class="keyword">if</span> (!m.isIdentity()) &#123;</div><div class="line">                    RectF boundingRect = attachInfo.mTmpTransformRect;</div><div class="line">                    boundingRect.set(dirty);</div><div class="line">                    m.mapRect(boundingRect);</div><div class="line">                    dirty.set((<span class="keyword">int</span>) (boundingRect.left - <span class="number">0.5f</span>),</div><div class="line">                            (<span class="keyword">int</span>) (boundingRect.top - <span class="number">0.5f</span>),</div><div class="line">                            (<span class="keyword">int</span>) (boundingRect.right + <span class="number">0.5f</span>),</div><div class="line">                            (<span class="keyword">int</span>) (boundingRect.bottom + <span class="number">0.5f</span>));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">while</span> (parent != <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><h3 id="ViewRootImpl的invalidateChildInParent方法"><a href="#ViewRootImpl的invalidateChildInParent方法" class="headerlink" title="ViewRootImpl的invalidateChildInParent方法"></a>ViewRootImpl的invalidateChildInParent方法</h3></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> ViewParent <span class="title">invalidateChildInParent</span><span class="params">(<span class="keyword">int</span>[] location, Rect dirty)</span> </span>&#123;</div><div class="line">    checkThread();</div><div class="line">    <span class="keyword">if</span> (DEBUG_DRAW) Log.v(TAG, <span class="string">"Invalidate child: "</span> + dirty);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (dirty == <span class="keyword">null</span>) &#123;</div><div class="line">        invalidate();</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (dirty.isEmpty() &amp;&amp; !mIsAnimating) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (mCurScrollY != <span class="number">0</span> || mTranslator != <span class="keyword">null</span>) &#123;</div><div class="line">        mTempRect.set(dirty);</div><div class="line">        dirty = mTempRect;</div><div class="line">        <span class="keyword">if</span> (mCurScrollY != <span class="number">0</span>) &#123;</div><div class="line">            dirty.offset(<span class="number">0</span>, -mCurScrollY);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (mTranslator != <span class="keyword">null</span>) &#123;</div><div class="line">            mTranslator.translateRectInAppWindowToScreen(dirty);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (mAttachInfo.mScalingRequired) &#123;</div><div class="line">            dirty.inset(-<span class="number">1</span>, -<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">final</span> Rect localDirty = mDirty;</div><div class="line">    <span class="keyword">if</span> (!localDirty.isEmpty() &amp;&amp; !localDirty.contains(dirty)) &#123;</div><div class="line">        mAttachInfo.mSetIgnoreDirtyState = <span class="keyword">true</span>;</div><div class="line">        mAttachInfo.mIgnoreDirtyState = <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Add the new dirty rect to the current one</span></div><div class="line">    localDirty.union(dirty.left, dirty.top, dirty.right, dirty.bottom);</div><div class="line">    <span class="comment">// Intersect with the bounds of the window to skip</span></div><div class="line">    <span class="comment">// updates that lie outside of the visible region</span></div><div class="line">    <span class="keyword">final</span> <span class="keyword">float</span> appScale = mAttachInfo.mApplicationScale;</div><div class="line">    <span class="keyword">final</span> <span class="keyword">boolean</span> intersected = localDirty.intersect(<span class="number">0</span>, <span class="number">0</span>,</div><div class="line">            (<span class="keyword">int</span>) (mWidth * appScale + <span class="number">0.5f</span>), (<span class="keyword">int</span>) (mHeight * appScale + <span class="number">0.5f</span>));</div><div class="line">    <span class="keyword">if</span> (!intersected) &#123;</div><div class="line">        localDirty.setEmpty();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!mWillDrawSoon &amp;&amp; (intersected || mIsAnimating)) &#123;</div><div class="line">        scheduleTraversals();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个方法主要作用是先确定哪些区域重新绘画，然后遍历绘画。接下来分析scheduleTraversals.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">scheduleTraversals</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!mTraversalScheduled) &#123;</div><div class="line">        mTraversalScheduled = <span class="keyword">true</span>;</div><div class="line">        mTraversalBarrier = mHandler.getLooper().postSyncBarrier();</div><div class="line">        mChoreographer.postCallback(</div><div class="line">                Choreographer.CALLBACK_TRAVERSAL, mTraversalRunnable, <span class="keyword">null</span>);</div><div class="line">        <span class="keyword">if</span> (!mUnbufferedInputDispatch) &#123;</div><div class="line">            scheduleConsumeBatchedInput();</div><div class="line">        &#125;</div><div class="line">        notifyRendererOfFramePending();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接下来进入Choreographer 中的postCallback。对于Choreographe这个类非常的重要，它简单来说是一个消息处理器，包括用户输入，动画，绘图。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postCallback</span><span class="params">(<span class="keyword">int</span> callbackType, Runnable action, Object token)</span> </span>&#123;</div><div class="line">    postCallbackDelayed(callbackType, action, token, <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postCallbackDelayed</span><span class="params">(<span class="keyword">int</span> callbackType,</span></span></div><div class="line">        Runnable action, Object token, <span class="keyword">long</span> delayMillis) &#123;</div><div class="line">    <span class="keyword">if</span> (action == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"action must not be null"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (callbackType &lt; <span class="number">0</span> || callbackType &gt; CALLBACK_LAST) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"callbackType is invalid"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    postCallbackDelayedInternal(callbackType, action, token, delayMillis);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">postCallbackDelayedInternal</span><span class="params">(<span class="keyword">int</span> callbackType,</span></span></div><div class="line">        Object action, Object token, <span class="keyword">long</span> delayMillis) &#123;</div><div class="line">    <span class="keyword">if</span> (DEBUG) &#123;</div><div class="line">        Log.d(TAG, <span class="string">"PostCallback: type="</span> + callbackType</div><div class="line">                + <span class="string">", action="</span> + action + <span class="string">", token="</span> + token</div><div class="line">                + <span class="string">", delayMillis="</span> + delayMillis);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">synchronized</span> (mLock) &#123;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">long</span> now = SystemClock.uptimeMillis();</div><div class="line">        <span class="keyword">final</span> <span class="keyword">long</span> dueTime = now + delayMillis;</div><div class="line">        mCallbackQueues[callbackType].addCallbackLocked(dueTime, action, token);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (dueTime &lt;= now) &#123;</div><div class="line">            scheduleFrameLocked(now);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            Message msg = mHandler.obtainMessage(MSG_DO_SCHEDULE_CALLBACK, action);</div><div class="line">            msg.arg1 = callbackType;</div><div class="line">            msg.setAsynchronous(<span class="keyword">true</span>);</div><div class="line">            mHandler.sendMessageAtTime(msg, dueTime);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">scheduleFrameLocked</span><span class="params">(<span class="keyword">long</span> now)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!mFrameScheduled) &#123;</div><div class="line">        mFrameScheduled = <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">if</span> (USE_VSYNC) &#123;</div><div class="line">            <span class="keyword">if</span> (DEBUG) &#123;</div><div class="line">                Log.d(TAG, <span class="string">"Scheduling next frame on vsync."</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// If running on the Looper thread, then schedule the vsync immediately,</span></div><div class="line">            <span class="comment">// otherwise post a message to schedule the vsync from the UI thread</span></div><div class="line">            <span class="comment">// as soon as possible.</span></div><div class="line">            <span class="keyword">if</span> (isRunningOnLooperThreadLocked()) &#123;</div><div class="line">                scheduleVsyncLocked();</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                Message msg = mHandler.obtainMessage(MSG_DO_SCHEDULE_VSYNC);</div><div class="line">                msg.setAsynchronous(<span class="keyword">true</span>);</div><div class="line">                mHandler.sendMessageAtFrontOfQueue(msg);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">final</span> <span class="keyword">long</span> nextFrameTime = Math.max(</div><div class="line">                    mLastFrameTimeNanos / TimeUtils.NANOS_PER_MS + sFrameDelay, now);</div><div class="line">            <span class="keyword">if</span> (DEBUG) &#123;</div><div class="line">                Log.d(TAG, <span class="string">"Scheduling next frame in "</span> + (nextFrameTime - now) + <span class="string">" ms."</span>);</div><div class="line">            &#125;</div><div class="line">            Message msg = mHandler.obtainMessage(MSG_DO_FRAME);</div><div class="line">            msg.setAsynchronous(<span class="keyword">true</span>);</div><div class="line">            mHandler.sendMessageAtTime(msg, nextFrameTime);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个 USE_VSYN是4.1之后才引入了，采用了三重缓存，大大提高了绘画效率。具体的可以查看官方资料对其描述。这个字段默认为true。一般情况下isRunningOnLooperThreadLocked()==true..接下来分析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">scheduleVsyncLocked</span><span class="params">()</span> </span>&#123;</div><div class="line">    mDisplayEventReceiver.scheduleVsync();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个方法是一个native方法会回调onVsync()方法。大概意思是把它自身的runnable加入到队列中。接下来执行调用run()。run调用doFrame方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">FrameHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FrameHandler</span><span class="params">(Looper looper)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(looper);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">            <span class="keyword">case</span> MSG_DO_FRAME:</div><div class="line">                doFrame(System.nanoTime(), <span class="number">0</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> MSG_DO_SCHEDULE_VSYNC:</div><div class="line">                doScheduleVsync();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> MSG_DO_SCHEDULE_CALLBACK:</div><div class="line">                doScheduleCallback(msg.arg1);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">doFrame</span><span class="params">(<span class="keyword">long</span> frameTimeNanos, <span class="keyword">int</span> frame)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> <span class="keyword">long</span> startNanos;</div><div class="line">    <span class="keyword">synchronized</span> (mLock) &#123;</div><div class="line">        <span class="keyword">if</span> (!mFrameScheduled) &#123;</div><div class="line">            <span class="keyword">return</span>; <span class="comment">// no work to do</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        startNanos = System.nanoTime();</div><div class="line">        <span class="keyword">final</span> <span class="keyword">long</span> jitterNanos = startNanos - frameTimeNanos;</div><div class="line">        <span class="keyword">if</span> (jitterNanos &gt;= mFrameIntervalNanos) &#123;</div><div class="line">            <span class="keyword">final</span> <span class="keyword">long</span> skippedFrames = jitterNanos / mFrameIntervalNanos;</div><div class="line">            <span class="keyword">if</span> (skippedFrames &gt;= SKIPPED_FRAME_WARNING_LIMIT) &#123;</div><div class="line">                Log.i(TAG, <span class="string">"Skipped "</span> + skippedFrames + <span class="string">" frames!  "</span></div><div class="line">                        + <span class="string">"The application may be doing too much work on its main thread."</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">final</span> <span class="keyword">long</span> lastFrameOffset = jitterNanos % mFrameIntervalNanos;</div><div class="line">            <span class="keyword">if</span> (DEBUG) &#123;</div><div class="line">                Log.d(TAG, <span class="string">"Missed vsync by "</span> + (jitterNanos * <span class="number">0.000001f</span>) + <span class="string">" ms "</span></div><div class="line">                        + <span class="string">"which is more than the frame interval of "</span></div><div class="line">                        + (mFrameIntervalNanos * <span class="number">0.000001f</span>) + <span class="string">" ms!  "</span></div><div class="line">                        + <span class="string">"Skipping "</span> + skippedFrames + <span class="string">" frames and setting frame "</span></div><div class="line">                        + <span class="string">"time to "</span> + (lastFrameOffset * <span class="number">0.000001f</span>) + <span class="string">" ms in the past."</span>);</div><div class="line">            &#125;</div><div class="line">            frameTimeNanos = startNanos - lastFrameOffset;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (frameTimeNanos &lt; mLastFrameTimeNanos) &#123;</div><div class="line">            <span class="keyword">if</span> (DEBUG) &#123;</div><div class="line">                Log.d(TAG, <span class="string">"Frame time appears to be going backwards.  May be due to a "</span></div><div class="line">                        + <span class="string">"previously skipped frame.  Waiting for next vsync."</span>);</div><div class="line">            &#125;</div><div class="line">            scheduleVsyncLocked();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        mFrameScheduled = <span class="keyword">false</span>;</div><div class="line">        mLastFrameTimeNanos = frameTimeNanos;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    doCallbacks(Choreographer.CALLBACK_INPUT, frameTimeNanos);</div><div class="line">    doCallbacks(Choreographer.CALLBACK_ANIMATION, frameTimeNanos);</div><div class="line">    doCallbacks(Choreographer.CALLBACK_TRAVERSAL, frameTimeNanos);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (DEBUG) &#123;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">long</span> endNanos = System.nanoTime();</div><div class="line">        Log.d(TAG, <span class="string">"Frame "</span> + frame + <span class="string">": Finished, took "</span></div><div class="line">                + (endNanos - startNanos) * <span class="number">0.000001f</span> + <span class="string">" ms, latency "</span></div><div class="line">                + (startNanos - frameTimeNanos) * <span class="number">0.000001f</span> + <span class="string">" ms."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/03/15/线程安全与锁优化/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="超">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://odoy84a4u.bkt.clouddn.com/image/jpgIMG_0053.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="keep passion">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="keep passion" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/15/线程安全与锁优化/" itemprop="url">
+                  线程安全与锁优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-15T17:15:06+08:00">
+                2017-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/03/15/Java与线程/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1362,332 +1628,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/02/21/Learn-Python-一/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="超">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://odoy84a4u.bkt.clouddn.com/image/jpgIMG_0053.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="keep passion">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="keep passion" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/21/Learn-Python-一/" itemprop="url">
-                  Learn Python(一)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-21T10:39:05+08:00">
-                2017-02-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Learn-Python-一"><a href="#Learn-Python-一" class="headerlink" title="Learn Python(一)"></a>Learn Python(一)</h1><ul>
-<li>打印</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">"Hello World"</span></div></pre></td></tr></table></figure>
-<ul>
-<li>注释</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#这是一条注释</span></div></pre></td></tr></table></figure>
-<ul>
-<li>更多变量与打印</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">my_name = <span class="string">'baichao'</span></div><div class="line">my_height = <span class="number">176</span></div><div class="line">my_weight = <span class="number">58</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"Let's talk about %s"</span> % my_name</div><div class="line"><span class="keyword">print</span> <span class="string">"He's %d centimetres tall"</span> % my_height</div><div class="line"><span class="keyword">print</span> <span class="string">"He's %d kg heavy"</span> % my_weight</div><div class="line"></div><div class="line">x = <span class="string">"There are %d types of people."</span> % <span class="number">10</span></div><div class="line">binary = <span class="string">"binary"</span></div><div class="line">do_not = <span class="string">"don't"</span></div><div class="line">y = <span class="string">"Those who know %s and those who %s."</span> % (binary, do_not)</div><div class="line"></div><div class="line"><span class="keyword">print</span> x</div><div class="line"><span class="keyword">print</span> y</div><div class="line"></div><div class="line">hilarious = <span class="keyword">False</span></div><div class="line">joke_evaluation = <span class="string">"Isn't that joke so funny?! %r"</span></div><div class="line"></div><div class="line"><span class="keyword">print</span> joke_evaluation % hilarious</div><div class="line"></div><div class="line"><span class="comment">#使用\来进行转义</span></div><div class="line"><span class="keyword">print</span> <span class="string">"I am 6'2\" tall."</span></div><div class="line"><span class="keyword">print</span> <span class="string">'I am 6\'2" tall.'</span></div></pre></td></tr></table></figure>
-<ul>
-<li>转义列表</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Escape</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\\</td>
-<td>Backslash (\)</td>
-</tr>
-<tr>
-<td>\’</td>
-<td>Single-quote (‘)</td>
-</tr>
-<tr>
-<td>\”</td>
-<td>Double-quote (“)</td>
-</tr>
-<tr>
-<td>\a</td>
-<td>ASCII bell (BEL)</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>ASCII backspace (BS)</td>
-</tr>
-<tr>
-<td>\f</td>
-<td>ASCII formfeed (FF)</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>ASCII linefeed (LF)</td>
-</tr>
-<tr>
-<td>\N{name}</td>
-<td>Character named name in the Unicode database (Unicode only)</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>Carriage Return (CR)</td>
-</tr>
-<tr>
-<td>\t</td>
-<td>Horizontal Tab (TAB)</td>
-</tr>
-<tr>
-<td>\uxxxx</td>
-<td>Character with 16-bit hex value xxxx (u’’ string only)</td>
-</tr>
-<tr>
-<td>\Uxxxxxxxx</td>
-<td>Character with 32-bit hex value xxxxxxxx (u’’ string only)</td>
-</tr>
-<tr>
-<td>\v</td>
-<td>ASCII vertical tab (VT)</td>
-</tr>
-<tr>
-<td>\ooo</td>
-<td>Character with octal value ooo</td>
-</tr>
-<tr>
-<td>\xhh</td>
-<td>Character with hex value hh</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/02/16/Thinking-in-Java-笔记-三/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="超">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://odoy84a4u.bkt.clouddn.com/image/jpgIMG_0053.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="keep passion">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="keep passion" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/16/Thinking-in-Java-笔记-三/" itemprop="url">
-                  Thinking in Java 笔记(三)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-16T18:53:18+08:00">
-                2017-02-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Thinking-in-Java-笔记-三"><a href="#Thinking-in-Java-笔记-三" class="headerlink" title="Thinking in Java 笔记(三)"></a>Thinking in Java 笔记(三)</h1><h2 id="Chapter-15-泛型"><a href="#Chapter-15-泛型" class="headerlink" title="Chapter 15 泛型"></a>Chapter 15 泛型</h2><p>通配符被限制为单一边界</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//你可以这么做</span></div><div class="line">List&lt;? extends SuperHearing&gt; audioBoys;</div><div class="line"><span class="comment">//但是你不能这么做</span></div><div class="line">List&lt;? extends SuperHearing &amp; SuperSmell&gt; dogBoys;</div></pre></td></tr></table></figure>
-<p>通配符</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Holder&lt;Apple&gt; Apple = <span class="keyword">new</span> Holder&lt;Apple&gt;(<span class="keyword">new</span> Apple());</div><div class="line">Holder&lt;Fruit&gt; fruit = Apple; <span class="comment">//不行，不能向上转型</span></div><div class="line">Holder&lt;? extends Fruit&gt; fruit = Apple; <span class="comment">//可以，但是不能调用任何参数为泛型的方法，比如set()</span></div></pre></td></tr></table></figure>
-<p>超类型通配符</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1735,7 +1675,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1746,7 +1686,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
