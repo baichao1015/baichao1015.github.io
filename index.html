@@ -1481,6 +1481,8 @@
 <p>为了能更好地适应不同程序的内存状况，虚拟机并不是永远地要求对象的年龄必须达到了MaxTenuringTreshold才能晋升老年代，如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一般，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到MaxtenuringThreshold中要求的年龄。</p>
 <p><strong>空间分配担保</strong></p>
 <p>在发生<em>Minor GC</em>之前，虚拟机会先检查老年代最大可用的连续空间是否大于新生代所有对象总空间，如果这个条件成立，那么<em>Minor GC</em>可以确保安全的。如果不成立，则虚拟机会查看<em>HandlePromotionFailure</em>设置值是否允许担保失败。如果允许，那么会继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，如果大于，将尝试着进行一次<em>Minor GC</em>，尽管这次<em>Minor GC</em>是有风险的；如果小于，或者<em>HandlePromotionFailure</em>设置不允许冒险，那这时也要改为进行一次Full GC。</p>
+<p><strong>附：Android堆内存分代回收模型</strong></p>
+<p><img src="http://odoy84a4u.bkt.clouddn.com/image/android/memory_mode_generation.png" alt=""></p>
 
           
         
