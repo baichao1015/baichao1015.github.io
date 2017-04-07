@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://www.baichaohi.cn/2017/03/25/Learn-Python-2/index.html">
 <meta property="og:site_name" content="keep passion">
 <meta property="og:description" content="Input标准输入12345678910111213print &quot;How old are you?&quot;,age = raw_input()print &quot;How tall are you?&quot;,height = raw_input()print &quot;How much do you weigh?&quot;,weight = raw_input()print &quot;So, you&apos;re %r old, %r tall a">
-<meta property="og:updated_time" content="2017-03-24T16:48:23.000Z">
+<meta property="og:updated_time" content="2017-04-07T06:20:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Learn Python 2">
 <meta name="twitter:description" content="Input标准输入12345678910111213print &quot;How old are you?&quot;,age = raw_input()print &quot;How tall are you?&quot;,height = raw_input()print &quot;How much do you weigh?&quot;,weight = raw_input()print &quot;So, you&apos;re %r old, %r tall a">
@@ -358,6 +358,7 @@
 <li><code>truncate</code>  — Empties the file.Watch out if you care about the file.</li>
 <li><code>write(&#39;stuff&#39;)</code> — Writes “stuff” to the file.</li>
 </ul>
+<h2 id="More-Files"><a href="#More-Files" class="headerlink" title="More Files"></a>More Files</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> argv</div><div class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> exists</div><div class="line"></div><div class="line">script, from_file, to_file = argv</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"Copying from %s to %s"</span> % (from_file, to_file)</div><div class="line"></div><div class="line"><span class="comment"># we could do these two on one line, how?</span></div><div class="line">in_file = open(from_file)</div><div class="line">indata = in_file.read()</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"The input file is %d bytes long"</span> % len(indata)</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"Does the output file exist? %r"</span> % exists(to_file)</div><div class="line"><span class="keyword">print</span> <span class="string">"Ready, hit RETURN to continue, CTRL-C to abort."</span></div><div class="line">raw_input()</div><div class="line"></div><div class="line">out_file = open(to_file, <span class="string">'w'</span>)</div><div class="line">out_file.write(indata)</div><div class="line"></div><div class="line"><span class="keyword">print</span> <span class="string">"Alright, all done."</span></div><div class="line"></div><div class="line">out_file.close()</div><div class="line">in_file.close()</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -476,7 +477,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -522,7 +523,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-number">1.</span> <span class="nav-text">Input</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准输入"><span class="nav-number">1.1.</span> <span class="nav-text">标准输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多参输入"><span class="nav-number">1.2.</span> <span class="nav-text">多参输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再来一个例子"><span class="nav-number">1.3.</span> <span class="nav-text">再来一个例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reading-Files"><span class="nav-number">2.</span> <span class="nav-text">Reading Files</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-number">1.</span> <span class="nav-text">Input</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准输入"><span class="nav-number">1.1.</span> <span class="nav-text">标准输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多参输入"><span class="nav-number">1.2.</span> <span class="nav-text">多参输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再来一个例子"><span class="nav-number">1.3.</span> <span class="nav-text">再来一个例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reading-Files"><span class="nav-number">2.</span> <span class="nav-text">Reading Files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-Files"><span class="nav-number">3.</span> <span class="nav-text">More Files</span></a></li></ol></div>
             
 
           </div>
