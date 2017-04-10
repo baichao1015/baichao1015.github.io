@@ -361,7 +361,7 @@
 <li>requestLayout会直接递归调用父窗口的requestLayout，直到ViewRootImpl,然后触发peformTraversals，由于mLayoutRequested为true，会导致onMeasure和onLayout被调用。不一定会触发OnDraw </li>
 <li>requestLayout触发onDraw可能是因为在在layout过程中发现l,t,r,b和以前不一样，那就会触发一次invalidate，所以触发了onDraw，也可能是因为别的原因导致mDirty非空（比如在跑动画） </li>
 <li>requestLayout会导致自己以及父族view的PFLAG_FORCE_LAYOUT和PFLAG_INVALIDATED标志被设置。</li>
-<li>一般来说，只要刷新的时候就调用invalidate，需要重新measure就调用requestLayout，后面再跟个invalidate（为了保证重绘），这是我个人的理解。</li>
+<li>一般来说，只要刷新的时候就调用invalidate，需要重新measure就调用requestLayout。</li>
 </ul>
 
           
