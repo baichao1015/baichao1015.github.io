@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Plan," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,49 +84,28 @@
 
 
 
-<meta name="description" content="三月完成情况：
-
-[x] JVM原理学习
-[x] Android的View绘制原理，动画原理
-[ ] 进程间传输方式
-[x] WindowManager相关知识
-
-四月计划：
-
-Python学习
-进程间传输方式
-自定义组件深入">
+<meta name="description" content="View的invalidate调用过程流程图
+requestLayout流程图
+requestLayout在ViewRootImpl里的入口：
+1234567public void requestLayout() &amp;#123;    if (!mHandlingLayoutInLayoutRequest) &amp;#123;        checkThread();        mLayoutReq">
 <meta property="og:type" content="article">
-<meta property="og:title" content="4月计划">
-<meta property="og:url" content="http://www.baichaohi.cn/2017/04/07/4月计划/index.html">
+<meta property="og:title" content="invalidate与requestLayout">
+<meta property="og:url" content="http://www.baichaohi.cn/2017/04/10/invalidate与requestLayout/index.html">
 <meta property="og:site_name" content="keep passion">
-<meta property="og:description" content="三月完成情况：
-
-[x] JVM原理学习
-[x] Android的View绘制原理，动画原理
-[ ] 进程间传输方式
-[x] WindowManager相关知识
-
-四月计划：
-
-Python学习
-进程间传输方式
-自定义组件深入">
-<meta property="og:updated_time" content="2017-04-07T03:23:00.000Z">
+<meta property="og:description" content="View的invalidate调用过程流程图
+requestLayout流程图
+requestLayout在ViewRootImpl里的入口：
+1234567public void requestLayout() &amp;#123;    if (!mHandlingLayoutInLayoutRequest) &amp;#123;        checkThread();        mLayoutReq">
+<meta property="og:image" content="http://odoy84a4u.bkt.clouddn.com/image/android/invalidate%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://odoy84a4u.bkt.clouddn.com/image/android/requestLayout%E6%B5%81%E7%A8%8B.png">
+<meta property="og:updated_time" content="2017-04-10T07:11:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4月计划">
-<meta name="twitter:description" content="三月完成情况：
-
-[x] JVM原理学习
-[x] Android的View绘制原理，动画原理
-[ ] 进程间传输方式
-[x] WindowManager相关知识
-
-四月计划：
-
-Python学习
-进程间传输方式
-自定义组件深入">
+<meta name="twitter:title" content="invalidate与requestLayout">
+<meta name="twitter:description" content="View的invalidate调用过程流程图
+requestLayout流程图
+requestLayout在ViewRootImpl里的入口：
+1234567public void requestLayout() &amp;#123;    if (!mHandlingLayoutInLayoutRequest) &amp;#123;        checkThread();        mLayoutReq">
+<meta name="twitter:image" content="http://odoy84a4u.bkt.clouddn.com/image/android/invalidate%E6%B5%81%E7%A8%8B.png">
 
 
 
@@ -154,13 +133,13 @@ Python学习
 
 
 
-  <link rel="canonical" href="http://www.baichaohi.cn/2017/04/07/4月计划/"/>
+  <link rel="canonical" href="http://www.baichaohi.cn/2017/04/10/invalidate与requestLayout/"/>
 
 
 
 
 
-  <title> 4月计划 | keep passion </title>
+  <title> invalidate与requestLayout | keep passion </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +262,7 @@ Python学习
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/04/07/4月计划/">
+  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/04/10/invalidate与requestLayout/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="超">
@@ -307,7 +286,7 @@ Python学习
             
             
               
-                4月计划
+                invalidate与requestLayout
               
             
           </h1>
@@ -322,8 +301,8 @@ Python学习
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-07T11:09:45+08:00">
-                2017-04-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-10T12:27:37+08:00">
+                2017-04-10
               </time>
             
 
@@ -341,8 +320,8 @@ Python学习
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/07/4月计划/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/07/4月计划/" itemprop="commentCount"></span>
+                <a href="/2017/04/10/invalidate与requestLayout/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/10/invalidate与requestLayout/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -352,7 +331,7 @@ Python学习
 
           
           
-             <span id="/2017/04/07/4月计划/" class="leancloud_visitors" data-flag-title="4月计划">
+             <span id="/2017/04/10/invalidate与requestLayout/" class="leancloud_visitors" data-flag-title="invalidate与requestLayout">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -379,18 +358,19 @@ Python学习
       
 
       
-        <p>三月完成情况：</p>
-<ul>
-<li>[x] <strong>JVM原理学习</strong></li>
-<li>[x] <strong>Android的View绘制原理，动画原理</strong></li>
-<li>[ ] 进程间传输方式</li>
-<li>[x] <strong>WindowManager相关知识</strong></li>
-</ul>
-<p>四月计划：</p>
-<ul>
-<li><strong>Python学习</strong></li>
-<li><strong>进程间传输方式</strong></li>
-<li><strong>自定义组件深入</strong></li>
+        <h3 id="View的invalidate调用过程流程图"><a href="#View的invalidate调用过程流程图" class="headerlink" title="View的invalidate调用过程流程图"></a><strong>View的invalidate调用过程流程图</strong></h3><p><img src="http://odoy84a4u.bkt.clouddn.com/image/android/invalidate%E6%B5%81%E7%A8%8B.png" alt=""></p>
+<h3 id="requestLayout流程图"><a href="#requestLayout流程图" class="headerlink" title="requestLayout流程图"></a><strong>requestLayout流程图</strong></h3><p><img src="http://odoy84a4u.bkt.clouddn.com/image/android/requestLayout%E6%B5%81%E7%A8%8B.png" alt=""></p>
+<p>requestLayout在ViewRootImpl里的入口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestLayout</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!mHandlingLayoutInLayoutRequest) &#123;</div><div class="line">        checkThread();</div><div class="line">        mLayoutRequested = <span class="keyword">true</span>;</div><div class="line">        scheduleTraversals();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里设置了mLayoutRequested为true，然后在scheduleTraversals里因为mLayoutRequested为true触发了performMeasure和performLayout，而performMeasure和performLayout里会调用onMeasure和onLayout。然后在performDraw内部draw的过程中发现mDirty为空，所以onDraw可能不会被调用。为什么是可能呢，因为在 layout里会调用setFrame，然后setFrame里如果发现宽高发生变化就会调用invalidate。</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a><strong>总结：</strong></h3><ul>
+<li>view不停找parent可以一直找到DecorView，按理说DecorView是顶点了，但是DecorView还有个虚拟父view，ViewRootImpl。 ViewRootImpl不是一个View或者ViewGroup,他有个成员mView是DecorView，所有的操作从ViewRootImpl开始自上而下分发 </li>
+<li>view的invalidate不会导致ViewRootImpl的invalidate被调用，而是递归调用父view的invalidateChildInParent，直到ViewRootImpl的invalidateChildInParent，然后触发peformTraversals，会导致当前view被重绘,由于mLayoutRequested为false，不会导致onMeasure和onLayout被调用，而OnDraw会被调用 </li>
+<li>一个view的invalidate会导致本身PFLAG_INVALIDATED置1，导致本身以及父族viewgroup的PFLAG_DRAWING_CACHE_VALID置0 </li>
+<li>requestLayout会直接递归调用父窗口的requestLayout，直到ViewRootImpl,然后触发peformTraversals，由于mLayoutRequested为true，会导致onMeasure和onLayout被调用。不一定会触发OnDraw </li>
+<li>requestLayout触发onDraw可能是因为在在layout过程中发现l,t,r,b和以前不一样，那就会触发一次invalidate，所以触发了onDraw，也可能是因为别的原因导致mDirty非空（比如在跑动画） </li>
+<li>requestLayout会导致自己以及父族view的PFLAG_FORCE_LAYOUT和PFLAG_INVALIDATED标志被设置。</li>
+<li>一般来说，只要刷新的时候就调用invalidate，需要重新measure就调用requestLayout，后面再跟个invalidate（为了保证重绘），这是我个人的理解。</li>
 </ul>
 
       
@@ -415,7 +395,7 @@ Python学习
       
         <div class="post-tags">
           
-            <a href="/tags/Plan/" rel="tag"># Plan</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -424,8 +404,8 @@ Python学习
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/05/Keep-Burning/" rel="next" title="Keep Burning">
-                <i class="fa fa-chevron-left"></i> Keep Burning
+              <a href="/2017/04/07/Learn-Python-3/" rel="next" title="Learn Python 3">
+                <i class="fa fa-chevron-left"></i> Learn Python 3
               </a>
             
           </div>
@@ -433,10 +413,6 @@ Python学习
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/07/Learn-Python-3/" rel="prev" title="Learn Python 3">
-                Learn Python 3 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -462,8 +438,8 @@ Python学习
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/04/07/4月计划/"
-           data-title="4月计划" data-url="http://www.baichaohi.cn/2017/04/07/4月计划/">
+      <div class="ds-thread" data-thread-key="2017/04/10/invalidate与requestLayout/"
+           data-title="invalidate与requestLayout" data-url="http://www.baichaohi.cn/2017/04/10/invalidate与requestLayout/">
       </div>
     
   </div>
@@ -487,8 +463,17 @@ Python学习
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490010179349&di=e924d9906bb6493f020e4b27c566acf4&imgtype=0&src=http%3A%2F%2Fyun.151.hk%2F2016%2F03%2Fymhd1.jpg"
@@ -537,6 +522,22 @@ Python学习
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#View的invalidate调用过程流程图"><span class="nav-number">1.</span> <span class="nav-text">View的invalidate调用过程流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestLayout流程图"><span class="nav-number">2.</span> <span class="nav-text">requestLayout流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结："><span class="nav-number">3.</span> <span class="nav-text">总结：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
