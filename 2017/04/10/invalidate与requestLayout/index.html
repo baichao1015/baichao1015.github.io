@@ -98,7 +98,7 @@ requestLayout在ViewRootImpl里的入口：
 1234567public void requestLayout() &amp;#123;    if (!mHandlingLayoutInLayoutRequest) &amp;#123;        checkThread();        mLayoutReq">
 <meta property="og:image" content="http://odoy84a4u.bkt.clouddn.com/image/android/invalidate%E6%B5%81%E7%A8%8B.png">
 <meta property="og:image" content="http://odoy84a4u.bkt.clouddn.com/image/android/requestLayout%E6%B5%81%E7%A8%8B.png">
-<meta property="og:updated_time" content="2017-04-10T07:13:09.000Z">
+<meta property="og:updated_time" content="2017-04-10T09:11:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="invalidate与requestLayout">
 <meta name="twitter:description" content="View的invalidate调用过程流程图
@@ -363,7 +363,7 @@ requestLayout在ViewRootImpl里的入口：
 <p>requestLayout在ViewRootImpl里的入口：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestLayout</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!mHandlingLayoutInLayoutRequest) &#123;</div><div class="line">        checkThread();</div><div class="line">        mLayoutRequested = <span class="keyword">true</span>;</div><div class="line">        scheduleTraversals();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这里设置了mLayoutRequested为true，然后在scheduleTraversals里因为mLayoutRequested为true触发了performMeasure和performLayout，而performMeasure和performLayout里会调用onMeasure和onLayout。然后在performDraw内部draw的过程中发现mDirty为空，所以onDraw可能不会被调用。为什么是可能呢，因为在 layout里会调用setFrame，然后setFrame里如果发现宽高发生变化就会调用invalidate。</p>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a><strong>总结：</strong></h3><ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
 <li>view不停找parent可以一直找到DecorView，按理说DecorView是顶点了，但是DecorView还有个虚拟父view，ViewRootImpl。 ViewRootImpl不是一个View或者ViewGroup,他有个成员mView是DecorView，所有的操作从ViewRootImpl开始自上而下分发 </li>
 <li>view的invalidate不会导致ViewRootImpl的invalidate被调用，而是递归调用父view的invalidateChildInParent，直到ViewRootImpl的invalidateChildInParent，然后触发peformTraversals，会导致当前view被重绘,由于mLayoutRequested为false，不会导致onMeasure和onLayout被调用，而OnDraw会被调用 </li>
 <li>一个view的invalidate会导致本身PFLAG_INVALIDATED置1，导致本身以及父族viewgroup的PFLAG_DRAWING_CACHE_VALID置0 </li>
@@ -372,7 +372,7 @@ requestLayout在ViewRootImpl里的入口：
 <li>requestLayout会导致自己以及父族view的PFLAG_FORCE_LAYOUT和PFLAG_INVALIDATED标志被设置。</li>
 <li>一般来说，只要刷新的时候就调用invalidate，需要重新measure就调用requestLayout。</li>
 </ul>
-
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3>
       
     </div>
 
@@ -532,7 +532,7 @@ requestLayout在ViewRootImpl里的入口：
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#View的invalidate调用过程流程图"><span class="nav-number">1.</span> <span class="nav-text">View的invalidate调用过程流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestLayout流程图"><span class="nav-number">2.</span> <span class="nav-text">requestLayout流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结："><span class="nav-number">3.</span> <span class="nav-text">总结：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#View的invalidate调用过程流程图"><span class="nav-number">1.</span> <span class="nav-text">View的invalidate调用过程流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requestLayout流程图"><span class="nav-number">2.</span> <span class="nav-text">requestLayout流程图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附"><span class="nav-number">4.</span> <span class="nav-text">附</span></a></li></ol></div>
             
 
           </div>
