@@ -98,7 +98,7 @@ requestLayout在ViewRootImpl里的入口：
 1234567public void requestLayout() &amp;#123;    if (!mHandlingLayoutInLayoutRequest) &amp;#123;        checkThread();        mLayoutReq">
 <meta property="og:image" content="http://odoy84a4u.bkt.clouddn.com/image/android/invalidate%E6%B5%81%E7%A8%8B.png">
 <meta property="og:image" content="http://odoy84a4u.bkt.clouddn.com/image/android/requestLayout%E6%B5%81%E7%A8%8B.png">
-<meta property="og:updated_time" content="2017-04-10T09:11:22.000Z">
+<meta property="og:updated_time" content="2017-04-10T09:14:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="invalidate与requestLayout">
 <meta name="twitter:description" content="View的invalidate调用过程流程图
@@ -372,7 +372,10 @@ requestLayout在ViewRootImpl里的入口：
 <li>requestLayout会导致自己以及父族view的PFLAG_FORCE_LAYOUT和PFLAG_INVALIDATED标志被设置。</li>
 <li>一般来说，只要刷新的时候就调用invalidate，需要重新measure就调用requestLayout。</li>
 </ul>
-<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p><a href="http://blog.spinytech.com/2016/12/12/android_view_on_measure/" target="_blank" rel="external">View绘制分析笔记之onMeasure</a></p>
+<p><a href="http://blog.spinytech.com/2016/12/15/android_view_on_layout/" target="_blank" rel="external">View绘制分析笔记之onLayout</a></p>
+<p><a href="http://blog.spinytech.com/2016/12/19/android_view_on_draw/" target="_blank" rel="external">View绘制分析笔记之onDraw</a></p>
+
       
     </div>
 
