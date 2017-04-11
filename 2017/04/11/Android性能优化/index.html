@@ -84,8 +84,7 @@
 
 
 
-<meta name="description" content="Android性能优化几大考虑
-Mobile Context
+<meta name="description" content="Android性能优化几大考虑Mobile Context
 资源受限
 内存：普遍较小
 CPU：核心少，计算能力有限
@@ -94,16 +93,13 @@ GPU：上传打的纹理，overdraw
 
 
 
-
-
 内存开销大，会导致系统换入换出更频繁，GC频繁，APP被kill、被重启更频繁，不仅会消耗更多电量，而且GC会消耗大量时间，使得应用程序渲染速度低于60fps（GC耗时dalvik 10-20ms，ART 2-3ms）
-外部存储与">
+外部存储与网络，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android性能优化">
 <meta property="og:url" content="http://www.baichaohi.cn/2017/04/11/Android性能优化/index.html">
 <meta property="og:site_name" content="keep passion">
-<meta property="og:description" content="Android性能优化几大考虑
-Mobile Context
+<meta property="og:description" content="Android性能优化几大考虑Mobile Context
 资源受限
 内存：普遍较小
 CPU：核心少，计算能力有限
@@ -112,15 +108,12 @@ GPU：上传打的纹理，overdraw
 
 
 
-
-
 内存开销大，会导致系统换入换出更频繁，GC频繁，APP被kill、被重启更频繁，不仅会消耗更多电量，而且GC会消耗大量时间，使得应用程序渲染速度低于60fps（GC耗时dalvik 10-20ms，ART 2-3ms）
-外部存储与">
-<meta property="og:updated_time" content="2017-04-11T07:37:06.000Z">
+外部存储与网络，">
+<meta property="og:updated_time" content="2017-04-11T07:47:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android性能优化">
-<meta name="twitter:description" content="Android性能优化几大考虑
-Mobile Context
+<meta name="twitter:description" content="Android性能优化几大考虑Mobile Context
 资源受限
 内存：普遍较小
 CPU：核心少，计算能力有限
@@ -129,10 +122,8 @@ GPU：上传打的纹理，overdraw
 
 
 
-
-
 内存开销大，会导致系统换入换出更频繁，GC频繁，APP被kill、被重启更频繁，不仅会消耗更多电量，而且GC会消耗大量时间，使得应用程序渲染速度低于60fps（GC耗时dalvik 10-20ms，ART 2-3ms）
-外部存储与">
+外部存储与网络，">
 
 
 
@@ -427,8 +418,7 @@ GPU：上传打的纹理，overdraw
       
 
       
-        <h2 id="Android性能优化几大考虑"><a href="#Android性能优化几大考虑" class="headerlink" title="Android性能优化几大考虑"></a>Android性能优化几大考虑</h2><ul>
-<li><h3 id="Mobile-Context"><a href="#Mobile-Context" class="headerlink" title="Mobile Context"></a>Mobile Context</h3><ul>
+        <h2 id="Android性能优化几大考虑"><a href="#Android性能优化几大考虑" class="headerlink" title="Android性能优化几大考虑"></a>Android性能优化几大考虑</h2><h3 id="Mobile-Context"><a href="#Mobile-Context" class="headerlink" title="Mobile Context"></a>Mobile Context</h3><ul>
 <li>资源受限<ul>
 <li>内存：普遍较小</li>
 <li>CPU：核心少，计算能力有限</li>
@@ -436,14 +426,11 @@ GPU：上传打的纹理，overdraw
 </ul>
 </li>
 </ul>
-</li>
-</ul>
 <ul>
 <li>内存开销大，会导致系统换入换出更频繁，GC频繁，APP被kill、被重启更频繁，不仅会消耗更多电量，而且GC会消耗大量时间，使得应用程序渲染速度低于60fps（GC耗时dalvik 10-20ms，ART 2-3ms）</li>
 <li>外部存储与网络，也是受限的，需要考虑资源的使用、网络请求的优化</li>
 </ul>
-<ul>
-<li><h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><ul>
+<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><ul>
 <li>Avoid Allocations in Inner Loops</li>
 <li>Avoid Allocations When Possible<ul>
 <li>Cached objects</li>
@@ -473,8 +460,7 @@ GPU：上传打的纹理，overdraw
 </ul>
 </li>
 </ul>
-</li>
-<li><h3 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h3><ul>
+<h3 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h3><ul>
 <li>Avoid Expensive Operations During Animations and User Interaction 动画的每一帧渲染都是在UI线程的，如果有动画的时候进行耗时操作，很可能导致动画不流畅，耗时操作包括：<ul>
 <li>Layout：当动画正在播放的时候，要避免改变View（延迟改变）；同时选择动画也需要避免会触发layout的动画，例如translationX，translationY只会导致延迟的layout操作，而LayoutParams属性，则会导致即时的layout。</li>
 <li>Inflation：动画过程中避免inflate新的view，比如启动新的activity，或者ListView滑动到不同type的区域。</li>
@@ -496,16 +482,14 @@ GPU：上传打的纹理，overdraw
 <li>Develop for the Low End</li>
 <li>Measure Performance</li>
 </ul>
-</li>
-<li><h3 id="Networking"><a href="#Networking" class="headerlink" title="Networking"></a>Networking</h3><ul>
+<h3 id="Networking"><a href="#Networking" class="headerlink" title="Networking"></a>Networking</h3><ul>
 <li>Don’t Over-Sync：batch it up with other system requests with JobScheduler or GCM Network Manager.</li>
 <li>Avoid Overloading the Server</li>
 <li>Don’t Make Assumptions about the Network</li>
 <li>Develop for Low End Networks</li>
 <li>Design Back-End APIs to Suit Client Usage Patterns：相关数据一个请求分发完毕；不相关的数据分接口分发；客户端应对获取的数据具备足够的信息；</li>
 </ul>
-</li>
-<li><h3 id="Language-and-Libraries"><a href="#Language-and-Libraries" class="headerlink" title="Language and Libraries"></a>Language and Libraries</h3><ul>
+<h3 id="Language-and-Libraries"><a href="#Language-and-Libraries" class="headerlink" title="Language and Libraries"></a>Language and Libraries</h3><ul>
 <li>Use Android-Appropriate Data Structures: ArrayMap, SparseArray</li>
 <li>Serialization<ul>
 <li>Parcelable：安卓系统IPC格式；把Parcel写到磁盘是不安全的；解包方必须能访问Parcel的类，否则将失败；特定的类（Bitmap，CursorWindow）将被写到SharedPreference中，而通过Parcel传递的只是文件的fd，存在性能优化的空间，但是也节约了内存；</li>
@@ -524,8 +508,7 @@ GPU：上传打的纹理，overdraw
 </li>
 <li>Prefer Primitive Types：内存、性能</li>
 </ul>
-</li>
-<li><h3 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h3><ul>
+<h3 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h3><ul>
 <li>Avoid Hard-coded File Paths</li>
 <li>Persist Relative Paths Only</li>
 <li>Use Storage Cache for Temporary Files</li>
@@ -533,16 +516,14 @@ GPU：上传打的纹理，overdraw
 <li>Avoid Using Too Many Databases</li>
 <li>Let User Choose Content Storage Location</li>
 </ul>
-</li>
-<li><h3 id="Framework"><a href="#Framework" class="headerlink" title="Framework"></a>Framework</h3><ul>
+<h3 id="Framework"><a href="#Framework" class="headerlink" title="Framework"></a>Framework</h3><ul>
 <li>Avoid Architecting Around Application Components</li>
 <li>Services Should Be Bound or Started, Not Both</li>
 <li>Prefer Broadcast over Service for Independent Events：Use broadcasts for delivering independent events; use services for processes with state and on-going lifecycle.</li>
 <li>Avoid Passing Large Objects Through Binder</li>
 <li>Isolate UI processes from Background Services</li>
 </ul>
-</li>
-<li><h3 id="User-Interface"><a href="#User-Interface" class="headerlink" title="User Interface"></a>User Interface</h3><ul>
+<h3 id="User-Interface"><a href="#User-Interface" class="headerlink" title="User Interface"></a>User Interface</h3><ul>
 <li>Avoid Overdraw</li>
 <li>Avoid Null Window Backgrounds put the background drawable you want on the window itself with the windowBackground theme attribute and let those intervening containers keep their default transparent backgrounds.</li>
 <li>Avoid Disabling the Starting Window（windowDisablePreview/windowBackground）</li>
@@ -555,8 +536,7 @@ GPU：上传打的纹理，overdraw
 <li>Cache User Input Locally</li>
 <li>Separate Network and Disk Background Operations</li>
 </ul>
-</li>
-<li><h3 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h3><ul>
+<h3 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h3><ul>
 <li>Host Tools<ul>
 <li>Systrace<ul>
 <li>Alerts and the Frames, 提示非常详尽，排查性能问题很方便</li>
@@ -593,7 +573,7 @@ GPU：上传打的纹理，overdraw
 </ul>
 </li>
 </ul>
-</li>
+<ul>
 <li><p>Speed up your app</p>
 <ul>
 <li>Rules<ul>
