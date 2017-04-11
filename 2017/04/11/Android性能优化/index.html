@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,22 +84,58 @@
 
 
 
-<meta name="description" content="线程的实现实现线程主要有3种方式：使用内核线程实现、使用用户线程实现和使用用户线程加轻量级进程混合实现。
-使用内核线程实现内核线程就是直接由操作系统内核支持的线程，这种线程由内核来完成线程切换，内核通过操纵调度器对线程进行调度，并负责将线程的任务映射到各个处理器上。每个内核线程可以视为内核的一个分身，这样操作系统就有能力同时处理多件事情，支持多线程的内核就叫做多线程内核。
-程序一般不糊直接去使用内">
+<meta name="description" content="Android性能优化几大考虑
+Mobile Context
+
+资源受限
+内存：普遍较小
+CPU：核心少，计算能力有限
+GPU：上传打的纹理，overdraw
+
+
+
+
+
+
+内存开销大，会导致系统换入换出更频繁，GC频繁，APP被kill、被重启更频繁，不仅会消耗更多电量，而且GC会消耗大量时间，使得应用程序渲染速度低于60fps（GC耗时dalvik 10-20ms，ART 2-3ms）
+外部存储">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java与线程">
-<meta property="og:url" content="http://www.baichaohi.cn/2017/03/15/Java与线程/index.html">
+<meta property="og:title" content="Android性能优化">
+<meta property="og:url" content="http://www.baichaohi.cn/2017/04/11/Android性能优化/index.html">
 <meta property="og:site_name" content="keep passion">
-<meta property="og:description" content="线程的实现实现线程主要有3种方式：使用内核线程实现、使用用户线程实现和使用用户线程加轻量级进程混合实现。
-使用内核线程实现内核线程就是直接由操作系统内核支持的线程，这种线程由内核来完成线程切换，内核通过操纵调度器对线程进行调度，并负责将线程的任务映射到各个处理器上。每个内核线程可以视为内核的一个分身，这样操作系统就有能力同时处理多件事情，支持多线程的内核就叫做多线程内核。
-程序一般不糊直接去使用内">
-<meta property="og:updated_time" content="2017-04-10T11:16:05.000Z">
+<meta property="og:description" content="Android性能优化几大考虑
+Mobile Context
+
+资源受限
+内存：普遍较小
+CPU：核心少，计算能力有限
+GPU：上传打的纹理，overdraw
+
+
+
+
+
+
+内存开销大，会导致系统换入换出更频繁，GC频繁，APP被kill、被重启更频繁，不仅会消耗更多电量，而且GC会消耗大量时间，使得应用程序渲染速度低于60fps（GC耗时dalvik 10-20ms，ART 2-3ms）
+外部存储">
+<meta property="og:updated_time" content="2017-04-11T07:24:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java与线程">
-<meta name="twitter:description" content="线程的实现实现线程主要有3种方式：使用内核线程实现、使用用户线程实现和使用用户线程加轻量级进程混合实现。
-使用内核线程实现内核线程就是直接由操作系统内核支持的线程，这种线程由内核来完成线程切换，内核通过操纵调度器对线程进行调度，并负责将线程的任务映射到各个处理器上。每个内核线程可以视为内核的一个分身，这样操作系统就有能力同时处理多件事情，支持多线程的内核就叫做多线程内核。
-程序一般不糊直接去使用内">
+<meta name="twitter:title" content="Android性能优化">
+<meta name="twitter:description" content="Android性能优化几大考虑
+Mobile Context
+
+资源受限
+内存：普遍较小
+CPU：核心少，计算能力有限
+GPU：上传打的纹理，overdraw
+
+
+
+
+
+
+内存开销大，会导致系统换入换出更频繁，GC频繁，APP被kill、被重启更频繁，不仅会消耗更多电量，而且GC会消耗大量时间，使得应用程序渲染速度低于60fps（GC耗时dalvik 10-20ms，ART 2-3ms）
+外部存储">
 
 
 
@@ -127,13 +163,13 @@
 
 
 
-  <link rel="canonical" href="http://www.baichaohi.cn/2017/03/15/Java与线程/"/>
+  <link rel="canonical" href="http://www.baichaohi.cn/2017/04/11/Android性能优化/"/>
 
 
 
 
 
-  <title> Java与线程 | keep passion </title>
+  <title> Android性能优化 | keep passion </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +312,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/03/15/Java与线程/">
+  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/04/11/Android性能优化/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="超">
@@ -300,7 +336,7 @@
             
             
               
-                Java与线程
+                Android性能优化
               
             
           </h1>
@@ -315,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-15T11:10:49+08:00">
-                2017-03-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-11T12:00:00+08:00">
+                2017-04-11
               </time>
             
 
@@ -338,8 +374,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM学习/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM学习</span>
+                  <a href="/categories/Android性能优化/" itemprop="url" rel="index">
+                    <span itemprop="name">Android性能优化</span>
                   </a>
                 </span>
 
@@ -356,8 +392,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/15/Java与线程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/15/Java与线程/" itemprop="commentCount"></span>
+                <a href="/2017/04/11/Android性能优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/11/Android性能优化/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,7 +403,7 @@
 
           
           
-             <span id="/2017/03/15/Java与线程/" class="leancloud_visitors" data-flag-title="Java与线程">
+             <span id="/2017/04/11/Android性能优化/" class="leancloud_visitors" data-flag-title="Android性能优化">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -394,78 +430,223 @@
       
 
       
-        <h2 id="线程的实现"><a href="#线程的实现" class="headerlink" title="线程的实现"></a>线程的实现</h2><p>实现线程主要有3种方式：使用内核线程实现、使用用户线程实现和使用用户线程加轻量级进程混合实现。</p>
-<h3 id="使用内核线程实现"><a href="#使用内核线程实现" class="headerlink" title="使用内核线程实现"></a>使用内核线程实现</h3><p>内核线程就是直接由操作系统内核支持的线程，这种线程由内核来完成线程切换，内核通过操纵调度器对线程进行调度，并负责将线程的任务映射到各个处理器上。每个内核线程可以视为内核的一个分身，这样操作系统就有能力同时处理多件事情，支持多线程的内核就叫做多线程内核。</p>
-<p>程序一般不糊直接去使用内核贤臣，而是去使用内核线程的一种高级接口——轻量级进程，轻量级进程就是我们通常意义上所讲的线程，由于每个轻量级进程都由一个内核线程支持，因此只有先支持内核线程，才能有轻量级进程。这种轻量级进程与内核线程之间1:1的关系称为一对一的线程模型。</p>
-<p>由于内核线程的支持，每个轻量级进程都成为一个独立的调度单元，即使有一个轻量级进程在系统调用中阻塞了，也不会影响整个进程继续工作，但是轻量级进程具有它的局限性：首先，由于是基于内核线程实现的，所以各种线程操作，如创建、析构及同步，都需要进行系统调用。而系统调用的代价相对较高，需要再用户态和内核态中来回切换。其次，每个轻量级进程都需要有一个内核线程的支持，因此轻量级进程要消耗一定的内核资源（如内核线程的栈空间），因此一个系统支持轻量级进程的数量是有限的。</p>
-<h3 id="使用用户线程实现"><a href="#使用用户线程实现" class="headerlink" title="使用用户线程实现"></a>使用用户线程实现</h3><p>狭义上用户线程指的是完全建立在用户空间的线程库上，系统内核不能感知线程存在的实现。用户线程的简历、同步、销毁、和调度完全在用户态中完成，不需要内核的帮助。如果程序实现得当，这种线程不需要切换到内核态，因此操作可以是坟场快速且低消耗的，也可以支持规模风大的线程数量，部分高性能数据库中的多线程就是由用户线程实现的。</p>
-<p>它的优势在于不需要系统内核支援，劣势也在于没有系统内核的支援，所有的线程操作都需要用户程序自己处理。线程的创建、切换和调度都是需要考虑的问题，而且由于操作系统只把处理器资源分配到进程，那诸如“阻塞如何处理”、“多处理器系统中如何将线程映射到其他处理器上”这类问题解决起来将会异常困难，甚至不可能完成。</p>
-<h3 id="使用用户线程加轻量级进程混合实现"><a href="#使用用户线程加轻量级进程混合实现" class="headerlink" title="使用用户线程加轻量级进程混合实现"></a>使用用户线程加轻量级进程混合实现</h3><h3 id="Java线程的实现"><a href="#Java线程的实现" class="headerlink" title="Java线程的实现"></a>Java线程的实现</h3><p>在JDK1.2之前，是基于称为“绿色线程”的用户线程实现的，而在JDK1.2中，线程模型替换为基于操作系统原生线程模型来实现。因此，在目前的JDK版本中，操作系统支持怎样的线程模型在很大程度上决定了Java虚拟机的线程需要使用哪种线程模型来实现。</p>
-<h2 id="Java线程调度"><a href="#Java线程调度" class="headerlink" title="Java线程调度"></a>Java线程调度</h2><p>线程调度是指系统为线程分配处理器使用权的过程，主要调度方式有两种，分别是协同式线程调度和抢占式线程调度。</p>
-<p>协同式线程调度的线程执行时间由本身来控制，线程把自己的工作执行完了之后，要主动通知系统切换到另外一个线程上。优势是是实现简单，Lua语言中的“协同例程”就是这类实现。坏处也很明显：线程执行时间不可控制，甚至如果一个线程编写有问题，一直不告知系统进行线程切换，那么程序就会一直阻塞在那里。</p>
-<p>抢占式线程调度的每个线程将由系统来分配执行时间，线程的切换不由线程本身来决定（Thread.yield()可以让出执行时间，但是要获取执行时间的话，线程本身是没有什么办法的）。Java使用的线程调度方式就是抢占式调度。</p>
-<p>虽然Java线程调度是系统自动完成的，但是我们可以建议系统给某些线程多分配一点执行时间，另外的一些线程则可以少分配一点，这项操作可以通过设置线程优先级来完成。Java一共设置了10个级别的线程优先级。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_PRIORITY = <span class="number">10</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_PRIORITY = <span class="number">1</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NORM_PRIORITY = <span class="number">5</span>;</div></pre></td></tr></table></figure>
-<p>不过，线程优先级并不是太靠谱，原因是Java的线程是通过映射到系统的原生线程上来实现的，所以线程调度最终还是取决于操作系统，虽然现在很多操作系统都提供线程优先级的概念，但是并不见得能与Java线程的优先级一一对应，比如Windows中就只有7种，比Java线程优先级多的系统还好说，中间可以留下空位，但是比Java少的，就不得不出现几个优先级相同的情况了。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Java线程优先级</th>
-<th style="text-align:center">Windows线程优先级</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1（Thread.MIN_PRIORITY）</td>
-<td style="text-align:center">THREAD_PRIORITY_LOWEST</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">THREAD_PRIORITY_LOWEST</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">THREAD_PRIORITY_BELOW_NORMAL</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">THREAD_PRIORITY_BELOW_NORMAL</td>
-</tr>
-<tr>
-<td style="text-align:center">5（Thread.NORMAL_PRIORITY）</td>
-<td style="text-align:center">THREAD_PRIORITY_NORMAL</td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">THREAD_PRIORITY_ABOVE_NORMAL</td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td style="text-align:center">THREAD_PRIORITY_ABOVE_NORMAL</td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td style="text-align:center">THREAD_PRIORITY_HIGHEST</td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td style="text-align:center">THREAD_PRIORITY_HIGHEST</td>
-</tr>
-<tr>
-<td style="text-align:center">10（Thread.MAX_PRIORITY）</td>
-<td style="text-align:center">THREAD_PRIORITY_CRITICAL</td>
-</tr>
-</tbody>
-</table>
-<p>优先级可能会被系统自行改变。在Windows系统中存在一个称谓优先级推进器的功能，当一个线程执行的特别努力的话，可能会越过线程优先级去为它分配执行时间。</p>
-<h2 id="状态转换"><a href="#状态转换" class="headerlink" title="状态转换"></a>状态转换</h2><p>Java语言定义了5种线程状态。</p>
+        <h2 id="Android性能优化几大考虑"><a href="#Android性能优化几大考虑" class="headerlink" title="Android性能优化几大考虑"></a>Android性能优化几大考虑</h2><ul>
+<li><p>Mobile Context</p>
 <ul>
-<li>New</li>
-<li>Runnable</li>
-<li>Waiting</li>
-<li>Timed Waiting</li>
-<li>Blocked</li>
-<li>Terminated</li>
+<li>资源受限<ul>
+<li>内存：普遍较小</li>
+<li>CPU：核心少，计算能力有限</li>
+<li>GPU：上传打的纹理，overdraw</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>内存开销大，会导致系统换入换出更频繁，GC频繁，APP被kill、被重启更频繁，不仅会消耗更多电量，而且GC会消耗大量时间，使得应用程序渲染速度低于60fps（GC耗时dalvik 10-20ms，ART 2-3ms）</li>
+<li>外部存储与网络，也是受限的，需要考虑资源的使用、网络请求的优化</li>
+</ul>
+<ul>
+<li><p>Memory</p>
+<ul>
+<li>Avoid Allocations in Inner Loops</li>
+<li>Avoid Allocations When Possible<ul>
+<li>Cached objects</li>
+<li>Object pools：注意线程安全问题</li>
+<li>ArrayList v.s. 数组</li>
+<li>Android collections classes：HashMap v.s. ArrayMap/SimpleArrayMap</li>
+<li>Methods with mutated objects</li>
+<li>Avoid object types when primitive types will do：SparseIntArray，SparseLongArray</li>
+<li>Avoid arrays of objects</li>
+</ul>
+</li>
+<li>Avoid Iterators：显式与隐式（foreach语句），会导致一个Iterator的分配，即便是空集合。</li>
+<li>Avoid Enums</li>
+<li>Avoid Frameworks and Libraries Not Written for Mobile Applications</li>
+<li>Avoid Static Leaks</li>
+<li>Avoid Finalizers</li>
+<li>Avoid Excess Static Initialization</li>
+<li>Trim caches on demand</li>
+<li>Use isLowRamDevice：ActivityManager.isLowRamDevice()</li>
+<li>Avoid Requesting a Large Heap</li>
+<li>Avoid Running Services Longer than Necessary：BroadcastReceiver，IntentService</li>
+<li>Optimize for Code Size<ul>
+<li>Use Proguard to strip out unused code</li>
+<li>Carefully consider your library dependencies</li>
+<li>Make sure to understand the cost of any code which is automatically generated</li>
+<li>Prefer simple, direct solutions to problems rather than creating a lot of infrastructure and abstractions to solve those problems</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Performance</p>
+<ul>
+<li>Avoid Expensive Operations During Animations and User Interaction 动画的每一帧渲染都是在UI线程的，如果有动画的时候进行耗时操作，很可能导致动画不流畅，耗时操作包括：<ul>
+<li>Layout：当动画正在播放的时候，要避免改变View（延迟改变）；同时选择动画也需要避免会触发layout的动画，例如translationX，translationY只会导致延迟的layout操作，而LayoutParams属性，则会导致即时的layout。</li>
+<li>Inflation：动画过程中避免inflate新的view，比如启动新的activity，或者ListView滑动到不同type的区域。</li>
+</ul>
+</li>
+<li>Launch Fast<ul>
+<li>Avoid this problem by launching as fast as possible</li>
+<li>Also, avoid initialization code in your Application object</li>
+</ul>
+</li>
+<li>Avoid Complex View Hierarchies<ul>
+<li>One approach to avoiding complex nested hierarchies is to use custom views or custom layouts in some situations; it may be cheaper for a single view to draw several pieces of text and icons rather than have a series of nested ViewGroups to accomplish this.</li>
+<li>结合的准则就是根据他们是否需要单独和用户完成交互（响应点击事件等）</li>
+</ul>
+</li>
+<li>Avoid RelativeLayout Near the Top of the View Hierarchy RelativeLayout需要两次measurement passes才能确定布局正确，嵌套RelativeLayout，是幂乘关系</li>
+<li>Avoid Expensive Operations on the UI Thread</li>
+<li>Minimize Wakeups</li>
+<li>Develop for the Low End</li>
+<li>Measure Performance</li>
+</ul>
+</li>
+<li><p>Networking</p>
+<ul>
+<li>Don’t Over-Sync：batch it up with other system requests with JobScheduler or GCM Network Manager.</li>
+<li>Avoid Overloading the Server</li>
+<li>Don’t Make Assumptions about the Network</li>
+<li>Develop for Low End Networks</li>
+<li>Design Back-End APIs to Suit Client Usage Patterns：相关数据一个请求分发完毕；不相关的数据分接口分发；客户端应对获取的数据具备足够的信息；</li>
+</ul>
+</li>
+<li><p>Language and Libraries</p>
+<ul>
+<li>Use Android-Appropriate Data Structures: ArrayMap, SparseArray</li>
+<li>Serialization<ul>
+<li>Parcelable：安卓系统IPC格式；把Parcel写到磁盘是不安全的；解包方必须能访问Parcel的类，否则将失败；特定的类（Bitmap，CursorWindow）将被写到SharedPreference中，而通过Parcel传递的只是文件的fd，存在性能优化的空间，但是也节约了内存；</li>
+<li>Persistable Bundles：API 21引入，序列化为XML，支持的类型比Parcel少，但是为Bundle子类，某些场景方便处理；</li>
+<li>Avoid Java Serialization：额外开销更大，性能更差</li>
+<li>XML and JSON：效率更低，复杂数据应考虑前述选项</li>
+</ul>
+</li>
+<li>Avoid JNI<ul>
+<li>需要考虑多种处理器架构，指针用long保存</li>
+<li>java-&gt;jni, jni-&gt;java调用开销都很大，一次JNI调用做尽可能多的工作</li>
+<li>内存管理，java对象管理jni对应对象的生命周期</li>
+<li>错误处理，在调用JNI之前检查参数</li>
+<li>参数对象尽量“传值”调用，即：展开后传递，不要在JNI里面使用指针访问成员，避免JNI过程中对象被回收</li>
+</ul>
+</li>
+<li>Prefer Primitive Types：内存、性能</li>
+</ul>
+</li>
+<li><p>Storage</p>
+<ul>
+<li>Avoid Hard-coded File Paths</li>
+<li>Persist Relative Paths Only</li>
+<li>Use Storage Cache for Temporary Files</li>
+<li>Avoid SQLite for Simple Requirements</li>
+<li>Avoid Using Too Many Databases</li>
+<li>Let User Choose Content Storage Location</li>
+</ul>
+</li>
+<li><p>Framework</p>
+<ul>
+<li>Avoid Architecting Around Application Components</li>
+<li>Services Should Be Bound or Started, Not Both</li>
+<li>Prefer Broadcast over Service for Independent Events：Use broadcasts for delivering independent events; use services for processes with state and on-going lifecycle.</li>
+<li>Avoid Passing Large Objects Through Binder</li>
+<li>Isolate UI processes from Background Services</li>
+</ul>
+</li>
+<li><p>User Interface</p>
+<ul>
+<li>Avoid Overdraw</li>
+<li>Avoid Null Window Backgrounds put the background drawable you want on the window itself with the windowBackground theme attribute and let those intervening containers keep their default transparent backgrounds.</li>
+<li>Avoid Disabling the Starting Window（windowDisablePreview/windowBackground）</li>
+<li>Allow Easy Exit from Immersive Mode</li>
+<li>Set Correct Status/Navigation Bar Colors in Starting Window</li>
+<li>Use the Appropriate Context</li>
+<li>Avoid View-Related References in Asynchronous Callbacks</li>
+<li>Design for RTL</li>
+<li>Cache Data Locally</li>
+<li>Cache User Input Locally</li>
+<li>Separate Network and Disk Background Operations</li>
+</ul>
+</li>
+<li><p>Tools</p>
+<ul>
+<li>Host Tools<ul>
+<li>Systrace<ul>
+<li>Alerts and the Frames, 提示非常详尽，排查性能问题很方便</li>
+<li>但是不知道怎么开启，monitor开启报错，命令行开启也报错，是手机系统的原因？</li>
+</ul>
+</li>
+<li>AllocationTracker<ul>
+<li>AS集成，点击按钮，对APP进行操作，再点击按钮结束，capture将在AS中打开，查看哪里分配了内存，排查内存分配性能问题利器</li>
+</ul>
+</li>
+<li>Traceview<ul>
+<li>根据Traceview的结果，查看耗时排名靠前的方法，分析原因，提高性能</li>
+</ul>
+</li>
+<li>Hierarchyviewer<ul>
+<li>查看当前view hierarchy中每个view的绘制实践，绘制较慢的该工具会给出提示（不同颜色）</li>
+</ul>
+</li>
+<li>MAT (Memory Analysis Tool)<ul>
+<li>先通过heap dump把堆快照导出，再通过MAT进行分析（实践？）</li>
+</ul>
+</li>
+<li>Memory Monitor</li>
+<li>meminfo</li>
+</ul>
+</li>
+<li>On-device tools<ul>
+<li>StrictMode</li>
+<li>Profile GPU rendering</li>
+<li>Debug GPU overdraw</li>
+<li>Animator duration scale</li>
+<li>Screenrecord</li>
+<li>Show hardware layer updates</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Speed up your app</p>
+<ul>
+<li>Rules<ul>
+<li>Always Measure</li>
+<li>Use[Experience] Slow Device</li>
+<li>Consider Trade-Offs</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Memory tips<ul>
+<li>Bitmap’s pixel format</li>
+<li>Context Awareness</li>
+<li>HashMap v.s. ArrayMap/SparseArray</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>LeakCanary</li>
+<li>Alpha<ul>
+<li>TextView: setTextColor() instead of setAlpha()</li>
+<li>ImageView: setImageAlpha() instead of setAlpha()</li>
+<li>CustomView: handle alpha yourself by overriding onSetAlpha(), overriding hasOverlappingRendering()</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Hardware Acceleration<ul>
+<li>view.setLayerType(View.LAYER_TYPE_HARDWARE, null)</li>
+<li>view.animate()….withLayer().start()</li>
+<li>硬件加速非常适用于动画的渲染，但是也有需要注意的地方，<a href="http://blog.danlew.net/2015/10/20/using-hardware-layers-to-improve-animation-performance/" target="_blank" rel="external">ref</a></li>
+<li>硬件加速的原理是GPU会把View绘制的结果缓存起来，后续的更新只需要重新渲染即可，省去了View的绘制，以及绘制指令的传输部分，但是硬件加速一开始的时候有额外的初始化工作（缓存）</li>
+<li>如果View特别简单，仅仅是一个单颜色区域，那硬件加速的额外开销可能得不偿失</li>
+<li>如果View在动画过程中不断invalidate，或者其内容不断变化，硬件加速的效果将大打折扣</li>
+<li>如果动画发生在ViewGroup上，而其子View相对于ViewGroup也是在发生变化时，就不应该把硬件加速设置在ViewGroup上，因为动画过程中ViewGroup的内容是不断变化的（子View也在不断变化），而是应该把加速设置在各个子View上</li>
+<li>GPU存储空间有限，仅当有必要时才使用硬件加速</li>
+<li>profile GPU rendering和show hardware layers updates是很好的效果评估工具</li>
+</ul>
+</li>
 </ul>
 
       
@@ -490,7 +671,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -499,8 +680,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/14/Java内存模型/" rel="next" title="Java内存模型">
-                <i class="fa fa-chevron-left"></i> Java内存模型
+              <a href="/2017/04/10/invalidate与requestLayout/" rel="next" title="invalidate与requestLayout">
+                <i class="fa fa-chevron-left"></i> invalidate与requestLayout
               </a>
             
           </div>
@@ -508,10 +689,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/15/线程安全与锁优化/" rel="prev" title="线程安全与锁优化">
-                线程安全与锁优化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -537,8 +714,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/15/Java与线程/"
-           data-title="Java与线程" data-url="http://www.baichaohi.cn/2017/03/15/Java与线程/">
+      <div class="ds-thread" data-thread-key="2017/04/11/Android性能优化/"
+           data-title="Android性能优化" data-url="http://www.baichaohi.cn/2017/04/11/Android性能优化/">
       </div>
     
   </div>
@@ -638,7 +815,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的实现"><span class="nav-number">1.</span> <span class="nav-text">线程的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用内核线程实现"><span class="nav-number">1.1.</span> <span class="nav-text">使用内核线程实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用用户线程实现"><span class="nav-number">1.2.</span> <span class="nav-text">使用用户线程实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用用户线程加轻量级进程混合实现"><span class="nav-number">1.3.</span> <span class="nav-text">使用用户线程加轻量级进程混合实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java线程的实现"><span class="nav-number">1.4.</span> <span class="nav-text">Java线程的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java线程调度"><span class="nav-number">2.</span> <span class="nav-text">Java线程调度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态转换"><span class="nav-number">3.</span> <span class="nav-text">状态转换</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android性能优化几大考虑"><span class="nav-number">1.</span> <span class="nav-text">Android性能优化几大考虑</span></a></li></ol></div>
             
 
           </div>
