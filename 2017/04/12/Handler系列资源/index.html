@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JVM," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,19 +84,22 @@
 
 
 
-<meta name="description" content="任何一门功能性语言都可以表示为一个能被Java虚拟机所接受的有效的Class文件。作为一个通用的、集齐无关的执行平台，任何其他语言的实现者都可以将Java虚拟机作为语言的产品交付媒介。虚拟机并不关心Class的来源是何种语言。
-Java语言中的各种变量、关键字和运算符号的语义最终都是由多条字节码命令组合而成的，因此字节码命令所能提供的语义描述能力肯定会比Java语言本身更为强大。因此，有一些Jav">
+<meta name="description" content="GityuanAndroid消息机制1-Handler(Java层)
+Android消息机制2-Handler(Native层)
+Android消息机制3-Handler(实战)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM之类文件的结构">
-<meta property="og:url" content="http://www.baichaohi.cn/2017/03/13/JVM之类文件的结构/index.html">
+<meta property="og:title" content="Handler系列资源">
+<meta property="og:url" content="http://www.baichaohi.cn/2017/04/12/Handler系列资源/index.html">
 <meta property="og:site_name" content="keep passion">
-<meta property="og:description" content="任何一门功能性语言都可以表示为一个能被Java虚拟机所接受的有效的Class文件。作为一个通用的、集齐无关的执行平台，任何其他语言的实现者都可以将Java虚拟机作为语言的产品交付媒介。虚拟机并不关心Class的来源是何种语言。
-Java语言中的各种变量、关键字和运算符号的语义最终都是由多条字节码命令组合而成的，因此字节码命令所能提供的语义描述能力肯定会比Java语言本身更为强大。因此，有一些Jav">
-<meta property="og:updated_time" content="2017-04-10T11:15:44.000Z">
+<meta property="og:description" content="GityuanAndroid消息机制1-Handler(Java层)
+Android消息机制2-Handler(Native层)
+Android消息机制3-Handler(实战)">
+<meta property="og:updated_time" content="2017-04-12T10:53:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM之类文件的结构">
-<meta name="twitter:description" content="任何一门功能性语言都可以表示为一个能被Java虚拟机所接受的有效的Class文件。作为一个通用的、集齐无关的执行平台，任何其他语言的实现者都可以将Java虚拟机作为语言的产品交付媒介。虚拟机并不关心Class的来源是何种语言。
-Java语言中的各种变量、关键字和运算符号的语义最终都是由多条字节码命令组合而成的，因此字节码命令所能提供的语义描述能力肯定会比Java语言本身更为强大。因此，有一些Jav">
+<meta name="twitter:title" content="Handler系列资源">
+<meta name="twitter:description" content="GityuanAndroid消息机制1-Handler(Java层)
+Android消息机制2-Handler(Native层)
+Android消息机制3-Handler(实战)">
 
 
 
@@ -124,13 +127,13 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
 
 
 
-  <link rel="canonical" href="http://www.baichaohi.cn/2017/03/13/JVM之类文件的结构/"/>
+  <link rel="canonical" href="http://www.baichaohi.cn/2017/04/12/Handler系列资源/"/>
 
 
 
 
 
-  <title> JVM之类文件的结构 | keep passion </title>
+  <title> Handler系列资源 | keep passion </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +276,7 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/03/13/JVM之类文件的结构/">
+  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/04/12/Handler系列资源/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="超">
@@ -297,7 +300,7 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
             
             
               
-                JVM之类文件的结构
+                Handler系列资源
               
             
           </h1>
@@ -312,8 +315,8 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-13T14:33:45+08:00">
-                2017-03-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-12T17:46:26+08:00">
+                2017-04-12
               </time>
             
 
@@ -335,8 +338,8 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM学习/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM学习</span>
+                  <a href="/categories/Android系列/" itemprop="url" rel="index">
+                    <span itemprop="name">Android系列</span>
                   </a>
                 </span>
 
@@ -353,8 +356,8 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/13/JVM之类文件的结构/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/13/JVM之类文件的结构/" itemprop="commentCount"></span>
+                <a href="/2017/04/12/Handler系列资源/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/12/Handler系列资源/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -364,7 +367,7 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
 
           
           
-             <span id="/2017/03/13/JVM之类文件的结构/" class="leancloud_visitors" data-flag-title="JVM之类文件的结构">
+             <span id="/2017/04/12/Handler系列资源/" class="leancloud_visitors" data-flag-title="Handler系列资源">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -391,11 +394,9 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
       
 
       
-        <p><strong>任何一门功能性语言都可以表示为一个能被Java虚拟机所接受的有效的Class文件。作为一个通用的、集齐无关的执行平台，任何其他语言的实现者都可以将Java虚拟机作为语言的产品交付媒介。虚拟机并不关心Class的来源是何种语言。</strong></p>
-<p>Java语言中的各种变量、关键字和运算符号的语义最终都是由多条字节码命令组合而成的，因此字节码命令所能提供的语义描述能力肯定会比Java语言本身更为强大。因此，有一些Java语言本身无法有效支持的语言特性不代表字节码本身无法有效支持，这也为其他语言实现一些有别于Java的语言特性提供了基础。</p>
-<p><strong>魔数与Class文件的版本</strong></p>
-<p>每个Class文件的头4个字节称为魔数，它的唯一作用是确定这个文件是否为一个能被虚拟机接受的Class文件。很多文件存储标准中都是用魔数来进行身份识别。Class文件的魔数的获得很有意思，值为：<strong>0xCAFEBABE</strong>。（咖啡宝贝？）</p>
-<p>紧接着魔数的4个字节存储的是Class文件的版本号：第5和第6个字节是次版本号（Monor Version），第7和第8个字节是主版本号（Major Version）。</p>
+        <h2 id="Gityuan"><a href="#Gityuan" class="headerlink" title="Gityuan"></a>Gityuan</h2><p><a href="http://gityuan.com/2015/12/26/handler-message-framework/" target="_blank" rel="external">Android消息机制1-Handler(Java层)</a></p>
+<p><a href="http://gityuan.com/2015/12/27/handler-message-native/" target="_blank" rel="external">Android消息机制2-Handler(Native层)</a></p>
+<p><a href="http://gityuan.com/2016/01/01/handler-message-usage/" target="_blank" rel="external">Android消息机制3-Handler(实战)</a></p>
 
       
     </div>
@@ -419,7 +420,7 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
       
         <div class="post-tags">
           
-            <a href="/tags/JVM/" rel="tag"># JVM</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       
@@ -428,8 +429,8 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/09/JVM之内存分配与回收策略/" rel="next" title="JVM之内存分配与回收策略">
-                <i class="fa fa-chevron-left"></i> JVM之内存分配与回收策略
+              <a href="/2017/04/11/Android性能优化/" rel="next" title="Android性能优化">
+                <i class="fa fa-chevron-left"></i> Android性能优化
               </a>
             
           </div>
@@ -437,10 +438,6 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/14/Java内存模型/" rel="prev" title="Java内存模型">
-                Java内存模型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -466,8 +463,8 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/13/JVM之类文件的结构/"
-           data-title="JVM之类文件的结构" data-url="http://www.baichaohi.cn/2017/03/13/JVM之类文件的结构/">
+      <div class="ds-thread" data-thread-key="2017/04/12/Handler系列资源/"
+           data-title="Handler系列资源" data-url="http://www.baichaohi.cn/2017/04/12/Handler系列资源/">
       </div>
     
   </div>
@@ -491,8 +488,17 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490010179349&di=e924d9906bb6493f020e4b27c566acf4&imgtype=0&src=http%3A%2F%2Fyun.151.hk%2F2016%2F03%2Fymhd1.jpg"
@@ -548,6 +554,22 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gityuan"><span class="nav-number">1.</span> <span class="nav-text">Gityuan</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
