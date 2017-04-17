@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -84,13 +84,37 @@
 
 
 
+<meta name="description" content="Executor种类：
+
+Executors.newCachedThreadPool()：每次都会创建一个新线程
+Executors.newFixedThreadPool(n)：创建一个大小为n的线程池
+Executors.newSingleThreadExecutor()：相当于创建一个大小为1的线程池，所有任务都在一个线程里执行。
+
+从任务中产生返回值：
+使用Callable接口，使用Exec">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2017,brand new life">
-<meta property="og:url" content="http://www.baichaohi.cn/2017/02/07/2017-brand-new-life/index.html">
+<meta property="og:title" content="Thinking in Java笔记之并发">
+<meta property="og:url" content="http://www.baichaohi.cn/2017/04/16/Thinking-in-Java笔记之并发/index.html">
 <meta property="og:site_name" content="keep passion">
-<meta property="og:updated_time" content="2017-02-07T03:32:35.000Z">
+<meta property="og:description" content="Executor种类：
+
+Executors.newCachedThreadPool()：每次都会创建一个新线程
+Executors.newFixedThreadPool(n)：创建一个大小为n的线程池
+Executors.newSingleThreadExecutor()：相当于创建一个大小为1的线程池，所有任务都在一个线程里执行。
+
+从任务中产生返回值：
+使用Callable接口，使用Exec">
+<meta property="og:updated_time" content="2017-04-16T09:30:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2017,brand new life">
+<meta name="twitter:title" content="Thinking in Java笔记之并发">
+<meta name="twitter:description" content="Executor种类：
+
+Executors.newCachedThreadPool()：每次都会创建一个新线程
+Executors.newFixedThreadPool(n)：创建一个大小为n的线程池
+Executors.newSingleThreadExecutor()：相当于创建一个大小为1的线程池，所有任务都在一个线程里执行。
+
+从任务中产生返回值：
+使用Callable接口，使用Exec">
 
 
 
@@ -118,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://www.baichaohi.cn/2017/02/07/2017-brand-new-life/"/>
+  <link rel="canonical" href="http://www.baichaohi.cn/2017/04/16/Thinking-in-Java笔记之并发/"/>
 
 
 
 
 
-  <title> 2017,brand new life | keep passion </title>
+  <title> Thinking in Java笔记之并发 | keep passion </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +291,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/02/07/2017-brand-new-life/">
+  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/04/16/Thinking-in-Java笔记之并发/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="超">
@@ -291,7 +315,7 @@
             
             
               
-                2017,brand new life
+                Thinking in Java笔记之并发
               
             
           </h1>
@@ -306,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-07T11:32:35+08:00">
-                2017-02-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-16T16:42:10+08:00">
+                2017-04-16
               </time>
             
 
@@ -317,6 +341,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Thinking-in-Java笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Thinking in Java笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -325,8 +371,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/07/2017-brand-new-life/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/07/2017-brand-new-life/" itemprop="commentCount"></span>
+                <a href="/2017/04/16/Thinking-in-Java笔记之并发/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/16/Thinking-in-Java笔记之并发/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -336,7 +382,7 @@
 
           
           
-             <span id="/2017/02/07/2017-brand-new-life/" class="leancloud_visitors" data-flag-title="2017,brand new life">
+             <span id="/2017/04/16/Thinking-in-Java笔记之并发/" class="leancloud_visitors" data-flag-title="Thinking in Java笔记之并发">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,7 +409,26 @@
       
 
       
-        
+        <p><strong>Executor种类：</strong></p>
+<ul>
+<li><code>Executors.newCachedThreadPool()</code>：每次都会创建一个新线程</li>
+<li><code>Executors.newFixedThreadPool(n)</code>：创建一个大小为n的线程池</li>
+<li><code>Executors.newSingleThreadExecutor()</code>：相当于创建一个大小为1的线程池，所有任务都在一个线程里执行。</li>
+</ul>
+<p><strong>从任务中产生返回值：</strong></p>
+<p>使用<code>Callable</code>接口，使用<code>ExecutorService.submit()</code>方法进行调用，<code>submit()</code>方法会产生<code>Future</code>对象，它用<code>Callable</code>返回的结果的特定类型进行了参数化，并可以用<code>isDone()</code>方法来查询<code>Future</code>是否已经完成。当任务完成时，它具有一个结果，可以调用<code>get()</code>方法来获取该结果。</p>
+<p><strong>后台线程：</strong>是指在程序运行的时候在后台提供一种通用服务的线程，并且这种线程并不属于程序中不可或缺的一部分。因此，当所有的费后台线程结束时，程序也就终止了，同时会杀死进程中的所有后台线程。</p>
+<p>在线程启动之前调用<code>setDaemon()</code>方法设置为后台线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Thread daemon = <span class="keyword">new</span> Thread();</div><div class="line">daemon.setDaemon(<span class="keyword">true</span>);</div><div class="line">daemon.start();</div></pre></td></tr></table></figure>
+<p>可以通过调用<code>isDaemon()</code>方法来确定线程是否是一个后台线程。如果是一个后台线程，那么它创建的任何线程将被自动设置成后台线程。</p>
+<p><strong>Join：</strong></p>
+<p>一个线程可以在其他线程之上调用<code>join()</code>方法，其效果是等待一段时间直到第二个线程结束才继续执行。如果某个线程在另一个线程<code>t</code>上调用<code>t.join()</code>,此线程将被挂起，直到目标线程<code>t</code>结束才恢复。对<code>join()</code>方法的调用可以被中断，做法是在调用线程上调用<code>interrupt()</code>方法。</p>
+<p><strong>Synchronized关键字：</strong></p>
+<p>所有对象都自动含有单一的锁，当在对象上调用其任意synchronized方法的时候，此对象都被加锁，这时该对象上的其他synchronized方法只有等到前一个方法调用完毕并释放了锁之后才能被调用。对于某个特定对象来说，其所有的synchronized方法共享一个锁，这可以被用来防止多个任务同时访问被编码为对象内存。并且将域设置为private是非常重要的，否则synchronized关键字就不能防止其他任务直接访问域，这样就会产生冲突。</p>
+<p>一个对任务可以多次获得对象的锁，当首先获得了锁的任务才能允许继续获取多个锁，当锁计数为0的时候，锁被完全释放，此时别的任务就可以使用此资源。</p>
+<p><strong>使用显式的Lock对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Lock lock = <span class="keyword">new</span> ReentrantLock();</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">	lock.lock();</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      </div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">      lock.unlock();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -384,13 +449,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/07/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/04/14/有关Java闭包/" rel="next" title="有关Java闭包">
+                <i class="fa fa-chevron-left"></i> 有关Java闭包
               </a>
             
           </div>
@@ -398,10 +469,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/09/Thinking-in-Java-笔记/" rel="prev" title="Thinking in Java 笔记">
-                Thinking in Java 笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -427,8 +494,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/07/2017-brand-new-life/"
-           data-title="2017,brand new life" data-url="http://www.baichaohi.cn/2017/02/07/2017-brand-new-life/">
+      <div class="ds-thread" data-thread-key="2017/04/16/Thinking-in-Java笔记之并发/"
+           data-title="Thinking in Java笔记之并发" data-url="http://www.baichaohi.cn/2017/04/16/Thinking-in-Java笔记之并发/">
       </div>
     
   </div>
