@@ -3,6 +3,20 @@
   
     
     <entry>
+      <title><![CDATA[Thinking in Java笔记之注解]]></title>
+      <url>%2F2017%2F04%2F21%2FThinking-in-Java%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B3%A8%E8%A7%A3%2F</url>
+      <content type="text"><![CDATA[注解是Java SE5引进的新特性，它的产生也是来自像C#之类的语言对Java造成的语言特性压力所作出的一种回应。一个注解类看起来很像接口的定义，它与其他任何Java接口一样，注解也会将编译成class文件。 123456789package com.example.baichao.myapplication.annotation;import java.lang.annotation.*;@Target(ElementType.METHOD)@Retention(RetentionPolicy.RUNTIME)public @interface TestAnnotation &#123;&#125; 除了@符号外，@TestAnnotation的定义更像一个空的接口。定义注解的时候，会需要一些元注解，如@Target和@Retention。@Target用来定义你的注解将应用于什么地方。@Retention用来定义该注解在哪一个级别可用，在源代码中(SOURCE)、类文件(CLASS)中或者运行时(RUNTIME)。没有元素的注解称为标记注解，例如上面的TestAnnotation。 元注解：@Target：表示该注解可以用于什么地方，可能的ElementType参数包括： CUNSTRUCTOR:构造器的声明 FIELD:域声明 LOCAL_VARIABLE:局部变量声明 METHOD:方法声明 PACKAGE:包申明 PARAMETER:参数声明 TYPE:类、接口（包括注解类型）或enum声明 @Retention：表示需要在什么级别保存该注解信息。可选的RetentionPolicy参数包括： SOURCE:注解将被编译器丢弃 CLASS:注解在class文件中可用，但会被VM丢弃。 RUNTIME:VM将在运行期页保留注解，因此可以通过反射机制读取注解的信息。 @DOCUMENTED：此注解包含在Javadoc中。 @Inherited：允许自雷继承父类中的注解。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[设计模式之结构型]]></title>
+      <url>%2F2017%2F04%2F20%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%93%E6%9E%84%E5%9E%8B%2F</url>
+      <content type="text"></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[设计模式之创建型]]></title>
       <url>%2F2017%2F04%2F19%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%9E%8B%2F</url>
       <content type="text"><![CDATA[建造者模式 123456789101112131415161718192021222324252627282930313233343536373839404142public class Person &#123; private final int mHeight; private final int mWeight; public Person (Builder builder) &#123; mHeight = builder.mHeight; mWeight = builder.mWeight; &#125; public int getHeight() &#123; return mHeight; &#125; public int getWeight() &#123; return mWeight; &#125; public static class Builder &#123; private int mHeight = 120; private int mWeight = 175; private Builder() &#123; &#125; public Builder setHeight(int height) &#123; mHeight = height; return this; &#125; public Builder setWeight(int weight) &#123; mWeight = weight; return this; &#125; public Person build() &#123; return new Person(this); &#125; &#125; &#125; 工厂方法 抽象工厂 单例模式 原型模式]]></content>
@@ -216,6 +230,13 @@
       <title><![CDATA[git学习]]></title>
       <url>%2F2015%2F07%2F28%2Fgit%E5%AD%A6%E4%B9%A0%2F</url>
       <content type="text"><![CDATA[基本操作 创建一个空目录 mkdir learngit 创建目录 cd learngit 进入目录 pwd 显示目录 将这个目录变成Git可以管理的仓库 git init 仓库初始化 编写一个文件比如file.txt放入learngit文件夹，并使用以下命令将文件添加至仓库，add放入暂存区，commit提交 git add file.txt 用命令git commit告诉Git，把文件提交到仓库,-m后为提交说明 git commit -m &quot;add file.txt&quot; 修改file.txt后用git status来查看仓库状态 git status 使用git diff来查看文件的修改状态 git diff file.txt git log查看改动日志，后面加--pretty=oneline可以使输入变成一行 回退上一个版本git reset --hard HEAD^,上上个版本是HEAD^^,第n个版本是HEAD~100，你让HEAD指向哪个版本号，你就把当前版本定位在哪。 用git log可以查看提交历史，以便确定要回退到哪个版本，用git reflog查看命令历史，以便确定要回到未来的哪个版本。 删除文件 git rm 文件名 把本地仓库的内容推送到GitHub仓库 git remote add origin https:/github.com/自己的github账号/仓库名git push -u origin master 第一次提交需要加上-u，之后每次提交就不用了 关联一个远程库，使用命令 git remote add origin git@server-name:path/repo-name.git 创建和合并分支 创建dev分支并切换至dev分支 git checkout -b dev 加上-b参数表示创建并切换，相当于以下两条命令： git branch dev git checkout dev 合并某分支到当前分支 git merge &lt;name&gt; 删除dev分支 git branch -d dev 推送分支dev至远程仓库origin git push origin dev 多人协作 查看远程库信息，使用git remote -v； 本地新建的分支如果不推送到远程，对其他人就是不可见的； 从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交； 在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致； 建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name； 从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[二叉树相关]]></title>
+      <url>%2F2015%2F04%2F25%2F%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9B%B8%E5%85%B3%2F</url>
+      <content type="text"><![CDATA[123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132package com.example.baichao.myapplication.algorithm;import java.util.LinkedList;import java.util.Queue;import java.util.Stack;/** * Created by baichao on 15/4/25. */public class BinaryTreeNode&lt;T&gt; &#123; private String name; private T data; private boolean isLeaf; private BinaryTreeNode&lt;T&gt; left; private BinaryTreeNode&lt;T&gt; right; public BinaryTreeNode(String name, T data) &#123; this.name = name; this.data = data; &#125; public String getName() &#123; return name; &#125; public void setName(String name) &#123; this.name = name; &#125; public T getData() &#123; return data; &#125; public void setData(T data) &#123; this.data = data; &#125; public BinaryTreeNode&lt;T&gt; CreateAndJionLeft(String name, T data) &#123; return left = new BinaryTreeNode&lt;T&gt;(name, data); &#125; public BinaryTreeNode&lt;T&gt; CreateAndJionRight(String name, T data) &#123; return right = new BinaryTreeNode&lt;T&gt;(name, data); &#125; public boolean isLeaf() &#123; isLeaf = (left == null &amp;&amp; right == null); return isLeaf; &#125; /** * 前序遍历 */ public void PreOrderTraversal() &#123; if (this != null) &#123; System.out.println(name); &#125; if (left != null) &#123; left.PreOrderTraversal(); &#125; if (right != null) &#123; right.PreOrderTraversal(); &#125; &#125; /** * 前序遍历非递归 */ public void PreOrderTraversalEx() &#123; Stack&lt;BinaryTreeNode&lt;T&gt;&gt; stack = new Stack&lt;BinaryTreeNode&lt;T&gt;&gt;(); BinaryTreeNode&lt;T&gt; node = this; while (node != null || stack.size() != 0) &#123; while (node != null) &#123; System.out.println(node.name); stack.push(node); node = node.left; &#125; if (stack.size() != 0) &#123; node = stack.pop(); node = node.right; &#125; &#125; &#125; /** * 反转二叉树(递归) */ public BinaryTreeNode&lt;T&gt; ReverseWithRecursive() &#123; if (this == null) &#123; return null; &#125; if (!(left == null &amp;&amp; right == null)) &#123; BinaryTreeNode&lt;T&gt; temp = right;//左右节点反转 right = left; left = temp; if (left != null) left = left.ReverseWithRecursive();//递归反转左子节点 if (right != null) right = right.ReverseWithRecursive();//递归反转右子节点 &#125; return this; &#125; /** * 反转二叉树(非递归) */ public BinaryTreeNode&lt;T&gt; Reverse() &#123; if (this == null) &#123; return null; &#125; Queue&lt;BinaryTreeNode&lt;T&gt;&gt; nodeQueue = new LinkedList&lt;BinaryTreeNode&lt;T&gt;&gt;(); nodeQueue.add(this); while (nodeQueue.size() &gt; 0) &#123; BinaryTreeNode&lt;T&gt; node = nodeQueue.peek(); nodeQueue.remove(); BinaryTreeNode&lt;T&gt; tempNode = node.right;//左右节点反转 node.right = node.left; node.left = tempNode; if (node.left != null) &#123; nodeQueue.add(node.left); &#125; if (node.right != null) &#123; nodeQueue.add(node.right); &#125; &#125; return this; &#125;&#125;]]></content>
     </entry>
 
     
