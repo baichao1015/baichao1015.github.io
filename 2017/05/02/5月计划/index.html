@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JVM," />
+  <meta name="keywords" content="Plan," />
 
 
 
@@ -84,21 +84,19 @@
 
 
 
-<meta name="description" content="任何一门功能性语言都可以表示为一个能被Java虚拟机所接受的有效的Class文件。作为一个通用的、集齐无关的执行平台，任何其他语言的实现者都可以将Java虚拟机作为语言的产品交付媒介。虚拟机并不关心Class的来源是何种语言。
-Java语言中的各种变量、关键字和运算符号的语义最终都是由多条字节码命令组合而成的，因此字节码命令所能提供的语义描述能力肯定会比Java语言本身更为强大。因此，有一些Jav">
+<meta name="description" content="五月计划：
+Binder">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM之类文件的结构">
-<meta property="og:url" content="http://www.baichaohi.cn/2017/03/13/JVM之类文件的结构/index.html">
+<meta property="og:title" content="5月计划">
+<meta property="og:url" content="http://www.baichaohi.cn/2017/05/02/5月计划/index.html">
 <meta property="og:site_name" content="keep passion">
-<meta property="og:description" content="任何一门功能性语言都可以表示为一个能被Java虚拟机所接受的有效的Class文件。作为一个通用的、集齐无关的执行平台，任何其他语言的实现者都可以将Java虚拟机作为语言的产品交付媒介。虚拟机并不关心Class的来源是何种语言。
-Java语言中的各种变量、关键字和运算符号的语义最终都是由多条字节码命令组合而成的，因此字节码命令所能提供的语义描述能力肯定会比Java语言本身更为强大。因此，有一些Jav">
-<meta property="og:image" content="http://cdn2.infoqstatic.com/statics_s1_20151215-0056_2/resource/articles/android-in-depth-dalvik/zh/resources/image002.png">
-<meta property="og:updated_time" content="2017-04-14T03:15:38.000Z">
+<meta property="og:description" content="五月计划：
+Binder">
+<meta property="og:updated_time" content="2017-05-02T08:30:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM之类文件的结构">
-<meta name="twitter:description" content="任何一门功能性语言都可以表示为一个能被Java虚拟机所接受的有效的Class文件。作为一个通用的、集齐无关的执行平台，任何其他语言的实现者都可以将Java虚拟机作为语言的产品交付媒介。虚拟机并不关心Class的来源是何种语言。
-Java语言中的各种变量、关键字和运算符号的语义最终都是由多条字节码命令组合而成的，因此字节码命令所能提供的语义描述能力肯定会比Java语言本身更为强大。因此，有一些Jav">
-<meta name="twitter:image" content="http://cdn2.infoqstatic.com/statics_s1_20151215-0056_2/resource/articles/android-in-depth-dalvik/zh/resources/image002.png">
+<meta name="twitter:title" content="5月计划">
+<meta name="twitter:description" content="五月计划：
+Binder">
 
 
 
@@ -126,13 +124,13 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
 
 
 
-  <link rel="canonical" href="http://www.baichaohi.cn/2017/03/13/JVM之类文件的结构/"/>
+  <link rel="canonical" href="http://www.baichaohi.cn/2017/05/02/5月计划/"/>
 
 
 
 
 
-  <title> JVM之类文件的结构 | keep passion </title>
+  <title> 5月计划 | keep passion </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -298,7 +296,7 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/03/13/JVM之类文件的结构/">
+  <link itemprop="mainEntityOfPage" href="http://www.baichaohi.cn/2017/05/02/5月计划/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="超">
@@ -322,7 +320,7 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
             
             
               
-                JVM之类文件的结构
+                5月计划
               
             
           </h1>
@@ -337,8 +335,8 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-13T14:33:45+08:00">
-                2017-03-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-02T16:28:33+08:00">
+                2017-05-02
               </time>
             
 
@@ -360,8 +358,8 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM学习/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM学习</span>
+                  <a href="/categories/学习计划/" itemprop="url" rel="index">
+                    <span itemprop="name">学习计划</span>
                   </a>
                 </span>
 
@@ -378,7 +376,7 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/03/13/JVM之类文件的结构/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/05/02/5月计划/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -389,7 +387,7 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
 
           
           
-             <span id="/2017/03/13/JVM之类文件的结构/" class="leancloud_visitors" data-flag-title="JVM之类文件的结构">
+             <span id="/2017/05/02/5月计划/" class="leancloud_visitors" data-flag-title="5月计划">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -416,12 +414,8 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
       
 
       
-        <p><strong>任何一门功能性语言都可以表示为一个能被Java虚拟机所接受的有效的Class文件。作为一个通用的、集齐无关的执行平台，任何其他语言的实现者都可以将Java虚拟机作为语言的产品交付媒介。虚拟机并不关心Class的来源是何种语言。</strong></p>
-<p>Java语言中的各种变量、关键字和运算符号的语义最终都是由多条字节码命令组合而成的，因此字节码命令所能提供的语义描述能力肯定会比Java语言本身更为强大。因此，有一些Java语言本身无法有效支持的语言特性不代表字节码本身无法有效支持，这也为其他语言实现一些有别于Java的语言特性提供了基础。</p>
-<p><strong>魔数与Class文件的版本</strong></p>
-<p>每个Class文件的头4个字节称为魔数，它的唯一作用是确定这个文件是否为一个能被虚拟机接受的Class文件。很多文件存储标准中都是用魔数来进行身份识别。Class文件的魔数的获得很有意思，值为：<strong>0xCAFEBABE</strong>。（咖啡宝贝？）</p>
-<p>紧接着魔数的4个字节存储的是Class文件的版本号：第5和第6个字节是次版本号（Monor Version），第7和第8个字节是主版本号（Major Version）。</p>
-<p><img src="http://cdn2.infoqstatic.com/statics_s1_20151215-0056_2/resource/articles/android-in-depth-dalvik/zh/resources/image002.png" alt=""></p>
+        <p>五月计划：</p>
+<p><strong>Binder</strong></p>
 
       
     </div>
@@ -445,7 +439,7 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
       
         <div class="post-tags">
           
-            <a href="/tags/JVM/" rel="tag"># JVM</a>
+            <a href="/tags/Plan/" rel="tag"># Plan</a>
           
         </div>
       
@@ -454,8 +448,8 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/09/JVM之内存分配与回收策略/" rel="next" title="JVM之内存分配与回收策略">
-                <i class="fa fa-chevron-left"></i> JVM之内存分配与回收策略
+              <a href="/2017/04/21/Thinking-in-Java笔记之注解/" rel="next" title="Thinking in Java笔记之注解">
+                <i class="fa fa-chevron-left"></i> Thinking in Java笔记之注解
               </a>
             
           </div>
@@ -463,10 +457,6 @@ Java语言中的各种变量、关键字和运算符号的语义最终都是由�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/14/Java内存模型/" rel="prev" title="Java内存模型">
-                Java内存模型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
